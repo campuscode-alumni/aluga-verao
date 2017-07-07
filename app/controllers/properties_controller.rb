@@ -1,6 +1,5 @@
 class PropertiesController < ApplicationController
-
-  def filtered_properties
+  def filtered
     @filter = params[:filter]
     @properties = []
     unless @filter.strip.empty?
@@ -8,4 +7,7 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def show
+    @property = Property.find(params[:id])
+  end
 end

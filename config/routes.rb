@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  get 'filter_properties', to: 'properties#filtered_properties'
+  resources :properties, only:[:show] do
+    get 'filtered', on: :collection
+  end
 end
