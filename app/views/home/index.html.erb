@@ -1,0 +1,6 @@
+<%= form_tag '/filter_properties', method: :get do %>
+  <%= label_tag 'filter', 'Filtro'  %>
+  <%= search_field_tag 'filter', '' %>
+
+  <%= submit_tag 'Filtrar' %>
+<% end %>
