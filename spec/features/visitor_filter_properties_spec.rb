@@ -3,21 +3,43 @@ require 'rails_helper'
 feature 'visitor_filter_properties' do
   scenario 'successfully' do
     #cria os dados necessarios
-    property = Property.create(city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento', description: 'Apartamento grande na região do Paraisópolis',
-                              price: 50, photo: 'apartamento.png', capacity: 20, minimun_rent: 1, maximum_rent: 5,
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+                              description: 'Apartamento grande na região do Paraisópolis',
+                              daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão')
 
-    property = Property.create(city: 'Rio de Janeiro', state: 'RJ', property_type: 'Apartamento', description: 'Apartamento grande na região de Copacabana',
-                              price: 50, photo: 'apartamento.png', capacity: 20, minimun_rent: 1, maximum_rent: 5,
+    another_property = Property.create(title:'Apartamento Biscoito', city: 'Rio de Janeiro', state: 'RJ', property_type: 'Apartamento',
+                              description: 'Apartamento grande na região de Copacabana',
+                              daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão em qualquer lugar do Rio', rent_purpose: 'Pancadão')
 
     #simula a acao do usuario
     visit root_path
-    fill_in 'Filtro', with: 'Sao Paulo'
+    fill_in 'filter', with: 'Sao Paulo'
     click_on 'Filtrar'
 
-    expect(page).to have_css('h1', text: 'Sao Paulo')
-    expect(page).not_to have_css('h1', text: 'Rio de Janeiro')
+    expect(page).to have_css('li', text: 'Sao Paulo')
+    expect(page).not_to have_css('li', text: 'Rio de Janeiro')
   end
+  scenario 'and there is no property' do
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+                              description: 'Apartamento grande na região do Paraisópolis',
+                              daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão')
+
+    another_property = Property.create(title:'Apartamento Biscoito', city: 'Rio de Janeiro', state: 'RJ', property_type: 'Apartamento',
+                              description: 'Apartamento grande na região de Copacabana',
+                              daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                              rules: 'Não pode faltar o pancadão em qualquer lugar do Rio', rent_purpose: 'Pancadão')
+
+
+    visit root_path
+    fill_in 'filter', with: 'Curitiba'
+    click_on 'Filtrar'
+
+    expect(page).to have_css('h2', 'Nenhum imovel encontrado nessa cidade.')
+  end
+
+
 
 end

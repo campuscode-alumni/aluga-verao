@@ -1,6 +1,5 @@
-<%= form_tag '/filter_properties', method: :get do %>
-  <%= label_tag 'filter', 'Filtro'  %>
-  <%= search_field_tag 'filter', '' %>
+<%= form_tag filter_properties_path, method: :get do %>
+  <%= text_field_tag :filter, '', placeholder: 'Digite a cidade ou estado para buscar' %>
 
   <%= submit_tag 'Filtrar' %>
 <% end %>
