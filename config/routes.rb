@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'home#index'
-  resources :properties, only:[:new, :create, :show]
+  resources :properties, only:[:new, :create, :show] do
+    get 'filtered', on: :collection
+  end
 end

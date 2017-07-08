@@ -9,6 +9,19 @@
   </head>
 
   <body>
+    <header>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <h1><%= link_to 'Aluga Verão', root_path %></h1>
+            </div>
+            <div class="navbar-right">
+              <p class="navbar-text">Bem vindo ao Aluga Verão/p>
+              <%= render 'shared/filter_form' %>
+            </div>
+          </div>
+        </nav>
+      </header>
     <%= yield %>
   </body>
 </html>

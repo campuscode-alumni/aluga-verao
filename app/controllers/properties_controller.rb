@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
 
+
   def new
     @property = Property.new
   end
@@ -15,15 +16,22 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def filtered
+    @filter = params[:filter]
+    @properties = []
+    unless @filter.strip.empty?
+      @properties =  Property.where('city = ?', @filter)
+    end
+  end
+
   def show
     @property = Property.find(params[:id])
   end
-
 end
 
 private
 
 def property_params
-  params.require(:property).permit(:city, :state, :description, :capacity, :price,
-                 :property_type, :maximum_rent, :minimun_rent, :rules, :purpose, :owner)
+  params.require(:property).permit(:city, :state, :description, :maximum_guests, :daily_rate,
+                 :property_type, :maximum_rent, :minimun_rent, :rules, :rent_purpose, :owner)
 end

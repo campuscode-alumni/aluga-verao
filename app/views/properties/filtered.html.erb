@@ -1,0 +1,15 @@
+<h2>Imoveis filtrados por:<%= @filter %> </h2>
+<% if @properties.empty? %>
+  <h2>Nenhum imovel encontrado nessa cidade.</h2>
+<% else %>
+<% @properties.each do |property| %>
+  <h3><%=property.title%></h3>
+  <ul>
+    <li><%= property.city%> </li>
+    <li><%= property.state%></li>
+    <li><%= property.property_type%></li>
+    <li><%= property.maximum_guests%></li>
+    <li><%= property.daily_rate%></li>
+  </ul>
+  <%end%>
+<%end%>

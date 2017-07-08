@@ -2,6 +2,9 @@
 
 <%= @properties.each do |property| %>
   <h1><%= link_to property.description, property %></h1>
+  <li><%= property.city %></li>
+  <li><%= property.state %></li>
+  <li> <%= property.rent_purpose %></li>
 <% end %>
 
-<%= link_to 'Cadastrar Imovel', new_property_path %> 
+<%= link_to 'Cadastrar Imovel', new_property_path %>

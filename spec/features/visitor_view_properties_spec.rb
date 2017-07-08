@@ -4,8 +4,8 @@ feature 'User view properties ' do
 
   scenario ' successfully ' do
     # criar as paradas
-    property = Property.create( city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo', price: 90.0, photo: 'sitio.jpg',
-                                capacity: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+    property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo', daily_rate: 90.0, photo: 'sitio.jpg',
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
     # simulate parada
     visit root_path
 
@@ -14,8 +14,8 @@ feature 'User view properties ' do
   end
 
   scenario 'and view details of properties' do
-    property = Property.create( city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo', price: 90.0, photo: 'sitio.jpg',
-                                capacity: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+    property = Property.create( title: 'Apartamento muito louco', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo', daily_rate: 90.0, photo: 'sitio.jpg',
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
 
     visit root_path
 
@@ -25,7 +25,7 @@ feature 'User view properties ' do
 
     expect(page).to have_css('li', text: property.state)
     expect(page).to have_css('li', text: property.city)
-    expect(page).to have_css('li', text: property.price)
+    expect(page).to have_css('li', text: property.daily_rate)
     expect(page).to have_css('li', text: property.owner)
     expect(page).to have_css('li', text:  property.rules)
 
