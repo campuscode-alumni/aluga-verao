@@ -37,7 +37,7 @@ feature 'visitor_filter_properties' do
     fill_in 'filter', with: 'Curitiba'
     click_on 'Filtrar'
 
-    expect(page).to have_css('h2', 'Nenhum imovel encontrado nessa cidade.')
+    expect(page).to have_css('h2', text: 'Nenhum imovel encontrado nessa cidade.')
   end
 
 

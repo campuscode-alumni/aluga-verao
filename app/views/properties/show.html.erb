@@ -1,8 +1,12 @@
-<h1> <%= @property.description %>  </h1>
+<h1><%= @property.title %></h1>
+<ul>
+  <li>Cidade: <%= @property.city %></li>
+  <li>Estado: <%= @property.state %></li>
+  <li>Regras para hospedagem: <%= @property.rules %></li>
+  <li>Dono: <%= @property.owner %></li>
+  <li>Valor da diária: <%= @property.daily_rate %></li>
+</ul>
+<label>Descrição:</label>
+<p><%= @property.description %></p>
 
-
-<li> <%= @property.state %>  </li>
-<li> <%= @property.city %>  </li>
-<li> <%= @property.rules %>  </li>
-<li> <%= @property.owner %>  </li>
-<li> <%= @property.daily_rate %>  </li>
+<%= link_to 'Enviar Proposta', new_property_proposal_path(@property) %>
