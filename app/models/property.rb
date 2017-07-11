@@ -1,3 +1,3 @@
 class Property < ApplicationRecord
-  has_many :proposal
+  has_many :proposals
 end
