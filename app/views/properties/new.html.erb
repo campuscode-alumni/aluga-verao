@@ -3,10 +3,9 @@
 <%= form_for  @property do |f| %>
 
     <div>
-        <%= f.label :description, 'Descricao'  %><br>
-        <%= f.text_field :description %>
+      <%= f.label :title, 'Titulo'  %><br>
+      <%= f.text_field :title %>
     </div>
-
     <div>
         <%= f.label :city, 'Cidade'  %><br>
         <%= f.text_field :city %>
@@ -56,6 +55,12 @@
         <%= f.label :owner, 'Dono'  %><br>
         <%= f.text_field :owner %>
     </div>
+
+    <div>
+        <%= f.label :description, 'Descricao'  %><br>
+        <%= f.text_field :description %>
+    </div>
+
 
     <div>
         <%= f.submit 'Enviar'%>

@@ -1,0 +1,12 @@
+<h2>Proposta enviada com sucesso</h2>
+<ul>
+    <li>Data Inicial: <%= @proposal.start_date.strftime('%d/%m/%Y') %></li>
+    <li>Data Final: <%= @proposal.end_date.strftime('%d/%m/%Y') %></li>
+    <li>Valor total: <%= number_to_currency(@proposal.total_amount, unit: 'R$ ', separator: ',') %></li>
+    <li>Quantidade de hóspede: <%= @proposal.total_guests %></li>
+    <li>Nome: <%= @proposal.name %></li>
+    <li>CPF: <%= @proposal.cpf %></li>
+    <li>Email: <%= @proposal.email %></li>
+    <li>Telefone: <%= @proposal.phone %></li>
+    <li>Observações: <%= @proposal.observation %></li>
+</ul>

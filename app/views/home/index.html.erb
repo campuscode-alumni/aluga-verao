@@ -1,10 +1,12 @@
 <h1> Aluguel de imoveis </h1>
 
 <%= @properties.each do |property| %>
-  <h1><%= link_to property.description, property %></h1>
-  <li><%= property.city %></li>
-  <li><%= property.state %></li>
-  <li> <%= property.rent_purpose %></li>
+  <h1><%= link_to property.title, property %></h1>
+  <ul>
+    <li><%= property.city %></li>
+    <li><%= property.state %></li>
+    <li> <%= property.rent_purpose %></li>
+  </ul>
 <% end %>
 
 <%= link_to 'Cadastrar Imovel', new_property_path %>

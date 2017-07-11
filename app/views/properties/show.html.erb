@@ -1,14 +1,19 @@
 <%= flash[:error] %>
 
-<h1> <%= @property.description %>  </h1>
+<h1><%= @property.title %></h1>
+<ul>
+  <li>Tipo da Propriedade: <%= @property.property_type %></li>
+  <li>Finalidade da locação: <%= @property.rent_purpose %></li>
+  <li>Cidade: <%= @property.city %></li>
+  <li>Estado: <%= @property.state %></li>
+  <li>Regras para hospedagem: <%= @property.rules %></li>
+  <li>Dono: <%= @property.owner %></li>
+  <li>Valor da diária: <%= @property.daily_rate %></li>
+  <li>Quantidade máxima de hospedes: <%= @property.maximum_guests %></li>
+  <li>Número mínimo de dias: <%= @property.minimun_rent %></li>
+  <li>Número máximo de dias: <%= @property.maximum_rent %></li>
+</ul>
+<label>Descrição:</label>
+<p><%= @property.description %></p>
 
-<li> <%= @property.rent_purpose %></li>
-<li> <%= @property.state %>  </li>
-<li> <%= @property.city %>  </li>
-<li> <%= @property.rules %>  </li>
-<li> <%= @property.owner %>  </li>
-<li> <%= @property.daily_rate %> </li>
-<li> <%= @property.property_type %></li>
-<li> <%= @property.maximum_guests %></li>
-<li> <%= @property.minimun_rent %></li>
-<li> <%= @property.maximum_rent %></li>
+<%= link_to 'Enviar Proposta', new_property_proposal_path(@property) %>
