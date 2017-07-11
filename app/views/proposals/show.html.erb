@@ -1,0 +1,6 @@
+<h1><%= @proposal.property.description %>
+<li><%= @proposal.start_date.strftime( '%d/%m/%Y') %> </li>
+<li><%= @proposal.end_date.strftime( '%d/%m/%Y' ) %> </li>
+<li><%= @proposal.daily_rate %> </li>
+
+<%= link_to 'Aceitar', proposal_accept_path(@proposal), method: :post %>

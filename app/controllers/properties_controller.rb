@@ -18,9 +18,19 @@ class PropertiesController < ApplicationController
 
   def filtered
     @filter = params[:filter]
+
+    date = Date.parse( "#{params[:date][:year]}/#{params[:date][:month]}/#{params[:date][:day]}")
+
     @properties = []
     unless @filter.strip.empty?
-      @properties =  Property.where('city = ?', @filter)
+
+      # properties_ids = Proposal.all.where('start_date >= ?', date ).where('end_date <= ?', date).pluck(:property_id)
+
+      properties_id = Proposal.all.where(accepted: false).pluck(:property_id)
+      puts properties_id
+      @properties =  Property.all.where('city = ?', @filter).where(id: properties_id )
+
+
     end
   end
 
