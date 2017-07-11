@@ -28,7 +28,7 @@ class Proposal < ApplicationRecord
     false
   end
 
-  def check_minimum_rent(days)
+  def check_minimum_rent?(days)
     if days < property.minimun_rent
       errors.add(:base, "Quantidade de dias para hospedagem precisa ser maior que #{property.minimun_rent}")
       return false
@@ -36,7 +36,7 @@ class Proposal < ApplicationRecord
     true
   end
 
-  def check_maximum_rent(days)
+  def check_maximum_rent?(days)
     if days > property.maximum_rent
       errors.add(:base, "Quantidade de dias para hospedagem precisa ser menor que #{property.maximum_rent}")
       return false
@@ -47,7 +47,7 @@ class Proposal < ApplicationRecord
   def calculate_total_amount
     if check_start_date? and check_end_date?
       days = (end_date - start_date).to_i
-      if check_minimum_rent(days) and check_maximum_rent(days)
+      if check_minimum_rent?(days) and check_maximum_rent?(days)
         self.total_amount = (property.daily_rate * days).to_f
       end
     end
