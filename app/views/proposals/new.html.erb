@@ -1,0 +1,24 @@
+
+<h1>Enviar Proposta</h1>
+
+<%= form_for [ @property, @proposal]  do |f|  %>
+  <div>
+    <%= f.label :start_date, 'Inicio' %>
+    <%= f.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= f.label :end_date, 'Termino' %>
+    <%= f.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= f.label :daily_rate, 'Valor' %>
+    <%= f.text_field :daily_rate %>
+  </div>
+
+
+
+  <%= f.submit 'Confirmar' %>
+
+<% end %>

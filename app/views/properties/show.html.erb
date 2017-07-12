@@ -12,3 +12,5 @@
 <li> <%= @property.maximum_guests %></li>
 <li> <%= @property.minimun_rent %></li>
 <li> <%= @property.maximum_rent %></li>
+
+<%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>

@@ -59,10 +59,15 @@ scenario 'successfully' do
     other_proposal = Proposal.create(start_date: '10/07/2017', end_date: '01/08/2017', daily_rate: 1000, property: property, accepted: false)
     #simula a acao
     visit root_path
-    fill_in 'filter', with: 'SaoPaulo'
-    click_on 'Filtrar'
+    click_on 'sitio do meu vo'
+    click_on 'Enviar proposta'
+    fill_in 'Inicio', with: '10/07/2017'
+    fill_in 'Termino', with: '01/08/2017'
+    fill_in 'Valor', with: '900'
+    # fill_in 'Numero de pessoas', text: '10'
+    click_on 'Confirmar'
 
-    expect(page).not_to have_css('h1', text: 'sitio do meu vo')
-    expect(page).to have_css('h1', text: 'casa da praia no guaruja')
+
+    expect(page).to have_content('casa indisponivel')
   end
 end
