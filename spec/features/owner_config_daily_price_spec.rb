@@ -109,7 +109,6 @@ require 'rails_helper'
       click_on 'Enviar'
 
       expect(page).to have_css('h3', text: 'Já existe um preço personalizado para esse periodo')
-
     end
 
   end
