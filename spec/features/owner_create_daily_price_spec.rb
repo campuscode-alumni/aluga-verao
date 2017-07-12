@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  feature 'Owner configure price_range by period' do
+  feature 'Owner create price_range by period' do
     scenario 'successfully' do
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',

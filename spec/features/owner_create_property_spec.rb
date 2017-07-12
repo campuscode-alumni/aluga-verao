@@ -34,7 +34,7 @@ feature 'Owner create property' do
     expect(page).to have_css('li', text: property.state)
     expect(page).to have_css('li', text: property.city)
     expect(page).to have_css('li', text: property.property_type)
-    expect(page).to have_css('li', text: property.daily_rate)
+    expect(page).to have_css('li', text: 'R$ 90,00')
     expect(page).to have_css('li', text: property.maximum_guests)
     expect(page).to have_css('li', text: property.maximum_rent)
     expect(page).to have_css('li', text: property.minimun_rent)

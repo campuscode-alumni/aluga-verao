@@ -1,5 +1,10 @@
 class PriceRangesController < ApplicationController
 
+  def index
+    find_property
+    @price_ranges = @property.price_ranges.all
+  end
+
   def show
     @price_range = PriceRange.find(params[:id])
   end
@@ -17,6 +22,21 @@ class PriceRangesController < ApplicationController
     else
       flash[:error] = 'Houve um erro ao tentar cadastrar o preço por periodo'
       render :new
+    end
+  end
+
+  def edit
+    @price_range = PriceRange.find(params[:id])
+  end
+
+  def update
+    @price_range = PriceRange.find(params[:id])
+    @price_range.update(price_range_params)
+    if @price_range.valid?
+      redirect_to @price_range
+    else
+      flash[:error] = 'Houve um erro ao tentar editar o preço por periodo'
+      render :edit
     end
   end
 
