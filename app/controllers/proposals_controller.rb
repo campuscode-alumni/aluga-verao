@@ -25,6 +25,7 @@ class ProposalsController < ApplicationController
         render :new
       end
     else
+
       flash[:error] = 'casa indisponivel'
       render :new
     end
