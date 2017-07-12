@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170711231908) do
     t.integer "property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "accepted", default: false
     t.index ["property_id"], name: "index_proposals_on_property_id"
   end
 

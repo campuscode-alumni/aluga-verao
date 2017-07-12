@@ -23,7 +23,7 @@ class PropertiesController < ApplicationController
     @filter = params[:filter]
     @properties = []
     unless @filter.strip.empty?
-      @properties =  Property.where('city = ?', @filter)
+      @properties =  Property.all.where('city = ?', @filter)
     end
   end
 

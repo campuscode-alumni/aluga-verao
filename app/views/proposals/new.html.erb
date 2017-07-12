@@ -2,10 +2,6 @@
   <h3><%= message %></h3>
 <% end %>
 
-<% if flash[:error] %>
-  <h3><%= flash[:error] %></h3>
-<% end %>
-
 <h1>Enviar Proposta</h1>
 
 <%= form_for([@property, @proposal]) do |f| %>
