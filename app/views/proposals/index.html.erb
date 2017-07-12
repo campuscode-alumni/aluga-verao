@@ -7,6 +7,6 @@
       <h1><%= link_to proposal.property.description, proposal_path(proposal) %>
       <li><%= proposal.start_date.strftime( '%d/%m/%Y') %> </li>
       <li><%= proposal.end_date.strftime( '%d/%m/%Y' ) %> </li>
-      <li><%= proposal.daily_rate %> </li>
+      <li><%= proposal.total_amount %> </li>
     <% end %>
   <% end %>

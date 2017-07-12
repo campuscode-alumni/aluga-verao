@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :proposals, only:[:index, :show] do
     post 'accept', to: 'proposals#accept_proposal'
   end
+
   resources :properties, only:[:new, :create, :show] do
-    resources :proposals, only: [:create, :new]
     get 'filtered', on: :collection
+    resources :proposals, only: [:create, :new]
   end
 end

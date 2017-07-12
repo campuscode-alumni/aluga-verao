@@ -31,9 +31,15 @@ ActiveRecord::Schema.define(version: 20170710235909) do
   end
 
   create_table "proposals", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.decimal "daily_rate"
+    t.date "start_date"
+    t.date "end_date"
+    t.decimal "total_amount"
+    t.integer "total_guests"
+    t.string "name"
+    t.string "email"
+    t.string "cpf"
+    t.string "phone"
+    t.text "observation"
     t.integer "property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -5,7 +5,7 @@ feature 'Owner create property' do
   scenario 'successfully' do
 
     #criar um imovel
-    property = Property.create( city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo', daily_rate: 90, photo: 'sitio.jpg',
+    property = Property.create(  title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo muito bac', daily_rate: 90, photo: 'sitio.jpg',
                                 maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
 
 
@@ -14,7 +14,7 @@ feature 'Owner create property' do
     visit root_path
     click_on 'Cadastrar Imovel'
     #preencher o form
-    fill_in 'Descricao', with: property.description
+    fill_in 'Titulo', with: property.title
     fill_in 'Cidade', with: property.city
     fill_in 'Estado', with: property.state
     fill_in 'Tipo', with: property.property_type
@@ -25,11 +25,12 @@ feature 'Owner create property' do
     fill_in 'Regras', with: property.rules
     fill_in 'Finalidade', with: property.rent_purpose
     fill_in 'Dono', with: property.owner
+    fill_in 'Descricao', with: property.description
 
     click_on 'Enviar'
 
     #excepct stranger things
-    expect(page).to have_css('h1', text: property.description)
+    expect(page).to have_css('h1', text: property.title)
     expect(page).to have_css('li', text: property.state)
     expect(page).to have_css('li', text: property.city)
     expect(page).to have_css('li', text: property.property_type)
@@ -40,6 +41,7 @@ feature 'Owner create property' do
     expect(page).to have_css('li', text: property.rules)
     expect(page).to have_css('li', text: property.rent_purpose)
     expect(page).to have_css('li', text: property.owner)
+    expect(page).to have_css('p', text: property.description)
 
   end
 
