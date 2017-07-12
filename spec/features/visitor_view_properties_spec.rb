@@ -29,6 +29,10 @@ feature 'User view properties ' do
     expect(page).to have_css('li', text: property.daily_rate)
     expect(page).to have_css('li', text: property.owner)
     expect(page).to have_css('li', text:  property.rules)
-
   end
+
+  scenario 'and expect price up to date' do
+    
+  end
+
 end

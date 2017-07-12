@@ -17,8 +17,8 @@ feature 'visitor_send_proposal' do
     click_on 'Apartamento Top'
     click_on 'Enviar Proposta'
 
-    fill_in 'Data Inicial', with: '2017/09/05'
-    fill_in 'Data Final', with: '2017/09/10'
+    fill_in 'Data Inicial', with: '05/09/2017'
+    fill_in 'Data Final', with: '10/09/2017'
     fill_in 'Quantidade de hóspedes', with: '4'
     fill_in 'Nome', with: 'Fernando da Silva'
     fill_in 'Email', with: 'fernado@silva.com'
@@ -57,7 +57,7 @@ feature 'visitor_send_proposal' do
     expect(page).to have_css('h3', text: 'Houve um erro ao tentar enviar a proposta')
   end
 
-  scenario 'and start date > today' do
+  scenario 'and start date < today' do
     property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,

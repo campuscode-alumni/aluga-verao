@@ -6,6 +6,7 @@ class Proposal < ApplicationRecord
   after_validation :calculate_total_amount
 
   private
+
   def check_start_date?
     unless start_date.nil?
       if start_date <= Date.today
