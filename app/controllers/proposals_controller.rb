@@ -16,7 +16,7 @@ class ProposalsController < ApplicationController
   def create
     find_property
     @proposal = @property.proposals.new(proposal_params)
-
+     @proposal.user = current_user
     if @property.is_available?( @proposal.start_date, @proposal.end_date )
       if @proposal.save
         redirect_to @proposal
@@ -41,6 +41,15 @@ class ProposalsController < ApplicationController
 
    redirect_to proposals_url
  end
+
+
+def my_proposals
+  @proposals = Proposal.where(user: current_user)
+end
+
+def print_cupom
+  @proposal = Proposal.find(params[:proposal_id])
+end
 
    private
 

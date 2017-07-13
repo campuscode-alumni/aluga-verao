@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'visitor_send_proposal' do
   scenario 'successfully' do
     #cria os dados necessarios
+    user = User.create(email: 'eliza@rails.com', password: 'test123')
     property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
@@ -12,6 +13,13 @@ feature 'visitor_send_proposal' do
     #                            total_amount: 200.00, total_guests: 4, name: 'Fernando da Silva',
     #                            email: 'fernando@silva.com', cpf: '12345678901', phone: '45810809',
     #                            observation: 'Pretendo levar dois cachorros')
+    visit root_path
+
+    click_on 'Login'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+    click_on 'Entrar'
+
 
     visit root_path
     click_on 'Apartamento Top'

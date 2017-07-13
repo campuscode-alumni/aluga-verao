@@ -1,6 +1,6 @@
 <h1> Aluguel de imoveis </h1>
 
-<%= @properties.each do |property| %>
+<% @properties.each do |property| %>
   <h1><%= link_to property.title, property %></h1>
   <ul>
     <li><%= property.city %></li>

@@ -17,12 +17,16 @@
             </div>
             <div class="navbar-right">
               <p class="navbar-text">Bem vindo ao Aluga Verão</p>
+              <%= link_to 'Login', new_user_session_path %>
+              <%= link_to 'Minhas propostas', my_proposals_path %>
               <%= render 'shared/filter_form' %>
             </div>
           </div>
         </nav>
       </header>
       <%= flash[:error] %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

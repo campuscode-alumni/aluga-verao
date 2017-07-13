@@ -1,0 +1,9 @@
+<h1> Comprovante de locacao </h1>
+
+<p> Eu, <%= @proposal.property.owner %>, portador do CPF 123.456.789-02 declaro para os devidos fins que alugo o imovel situado
+    a <%= @proposal.property.city %> para <%= @proposal.user.name %> portadora do CPF <%= @proposal.cpf %>, entre o periodo de
+    <%= @proposal.start_date %> a <%= @proposal.end_date %>, pelo valor total de <%= @proposal.total_amount %>. </p>
+
+<p> Para este periodo, devem ser respeitada as seguintes regras:
+
+  <%= @proposal.property.rules %></p>
