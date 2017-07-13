@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <th>Nome da Propriedade: </th>
+  </tr>
+  <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.title %></td>
+        <td><%= link_to 'Editar preços', property_price_ranges_path(property)%>
+      </tr>
+    <% end %>
+</table>

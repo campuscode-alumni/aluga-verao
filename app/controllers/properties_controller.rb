@@ -1,5 +1,8 @@
 class PropertiesController < ApplicationController
 
+  def index
+    @properties = Property.all
+  end
 
   def new
     @property = Property.new
@@ -26,6 +29,10 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
+    price_range = @property.price_ranges.where('(? between start_date and end_date)', Date.today).first
+    unless price_range.nil?
+      @property.daily_rate = price_range.daily_rate
+    end
   end
 end
 

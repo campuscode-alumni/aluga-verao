@@ -15,6 +15,12 @@ class ProposalsController < ApplicationController
 
   def create
     find_property
+
+    price_range = @property.price_ranges.where('(? between start_date and end_date)', Date.today).first
+    unless price_range.nil?
+      @property.daily_rate = price_range.daily_rate
+    end
+
     @proposal = @property.proposals.new(proposal_params)
      @proposal.user = current_user
     if @property.is_available?( @proposal.start_date, @proposal.end_date )
@@ -25,7 +31,6 @@ class ProposalsController < ApplicationController
         render :new
       end
     else
-
       flash[:error] = 'casa indisponivel'
       render :new
     end

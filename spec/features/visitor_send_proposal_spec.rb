@@ -25,8 +25,8 @@ feature 'visitor_send_proposal' do
     click_on 'Apartamento Top'
     click_on 'Enviar Proposta'
 
-    fill_in 'Data Inicial', with: '2017/09/05'
-    fill_in 'Data Final', with: '2017/09/10'
+    fill_in 'Data Inicial', with: '05/09/2017'
+    fill_in 'Data Final', with: '10/09/2017'
     fill_in 'Quantidade de hóspedes', with: '4'
     fill_in 'Nome', with: 'Fernando da Silva'
     fill_in 'Email', with: 'fernado@silva.com'
@@ -65,7 +65,7 @@ feature 'visitor_send_proposal' do
     expect(page).to have_css('h3', text: 'Houve um erro ao tentar enviar a proposta')
   end
 
-  scenario 'and start date > today' do
+  scenario 'and start date < today' do
     property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
@@ -155,6 +155,46 @@ feature 'visitor_send_proposal' do
     click_on 'Enviar'
 
     expect(page).to have_css('h3', text: "Quantidade de dias para hospedagem precisa ser menor que #{property.maximum_rent}")
+  end
+
+  scenario 'and expect price up to date' do
+    user = User.create(email: 'eliza@rails.com', password: 'test123')
+
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+                              description: 'Apartamento grande na região do Paraisópolis',
+                              daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
+
+    daily_price_range = PriceRange.create(start_date: Date.today, end_date: Date.today + 30, daily_rate: 100, property_id: property.id)
+
+
+     visit root_path
+
+     click_on 'Login'
+     fill_in 'Email', with: user.email
+     fill_in 'Senha', with: user.password
+     click_on 'Entrar'
+
+
+    visit root_path
+    click_on 'Apartamento Top'
+    click_on 'Enviar Proposta'
+
+    fill_in 'Data Inicial', with: '05/09/2017'
+    fill_in 'Data Final', with: '10/09/2017'
+    fill_in 'Quantidade de hóspedes', with: '4'
+    fill_in 'Nome', with: 'Fernando da Silva'
+    fill_in 'Email', with: 'fernado@silva.com'
+    fill_in 'CPF', with: '12345678901'
+    fill_in 'Telefone', with: '(11)99899-0909'
+    fill_in 'Observações', with: 'Pretendo levar dois cachorros e um gato'
+
+    click_on 'Enviar'
+
+    expect(page).to have_css('h2', text: 'Proposta enviada com sucesso')
+    expect(page).to have_css('li', text: '05/09/2017')
+    expect(page).to have_css('li', text: '10/09/2017')
+    expect(page).to have_css('li', text: 'Valor total: R$ 500,00')
   end
 
 end

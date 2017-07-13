@@ -1,0 +1,26 @@
+<% if flash[:error] %>
+  <h3><%= flash[:error] %></h3>
+<%end%>
+
+<% @price_range.errors.full_messages.each do |message| %>
+  <h3><%= message %></h3>
+<% end %>
+
+<%= form_for @price_range do |f| %>
+
+  <div>
+    <%= f.label :start_date, 'Data Inicial' %>
+    <%= f.date_field :start_date, min: Date.today, disabled: 'disabled' %>
+  </div>
+  <div>
+    <%= f.label :end_date, 'Data Final' %>
+    <%= f.date_field :end_date, min: Date.today, disabled: 'disabled' %>
+  </div>
+  <div>
+    <%= f.label :daily_rate, 'Valor da diaria' %>
+    <%= f.number_field :daily_rate %>
+  </div>
+
+  <%= f.submit 'Enviar' %>
+
+<% end %>

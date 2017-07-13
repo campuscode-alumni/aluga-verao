@@ -1,0 +1,7 @@
+<h2>Preço cadastrado com sucesso</h2>
+
+<ul>
+  <li>Data Inicial: <%= I18n.l(@price_range.start_date) %></li>
+  <li>Data Final: <%= I18n.l(@price_range.end_date) %></li>
+  <li>Valor da diaria no periodo: <%= number_to_currency(@price_range.daily_rate) %></li>
+</ul>
