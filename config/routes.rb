@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 
   root to: 'home#index'
-  resources :properties, only:[:show, :new, :create, :index] do
+  resources :properties, only:[:show, :new, :create, :index, :edit, :update] do
     resources :proposals, only: [:new, :create]
     resources :price_ranges, only: [:new, :create, :index]
     get 'filtered', on: :collection

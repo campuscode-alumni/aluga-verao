@@ -4,7 +4,7 @@ class Property < ApplicationRecord
   has_many :price_ranges
 
   def is_available?( start_date, end_date )
-    proposals.where(accepted: true).where.not( 'start_date >= ? and end_date <= ?', start_date, end_date ).empty?
+    proposals.find_by_sql([' select * from proposals where accepted = :accept and (start_date >= :start_param) and (:end_param >= start_date) or (end_date >= :start_param) and (start_date < :end_param) ', { accept: true, start_param: start_date, end_param: end_date}]).empty?
   end
 
 end

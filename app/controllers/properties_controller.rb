@@ -34,7 +34,24 @@ class PropertiesController < ApplicationController
       @property.daily_rate = price_range.daily_rate
     end
   end
+
+  def edit
+    @property = Property.find(params[:id])
+  end
+
+  def update
+    @property = Property.find(params[:id])
+    @property.update(property_params)
+    if @property.valid?
+      redirect_to @property
+    else
+      render :edit
+    end
+  end
+
 end
+
+
 
 private
 
