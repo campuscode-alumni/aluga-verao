@@ -1,0 +1,13 @@
+<% if @proposals.empty? %>
+<p> Voce nao possui propostas cadastradas</p>
+<% else %>
+  <% @proposals.each do |proposal| %>
+    <h1> <%= proposal.property.description %></h1>
+    <li><%= proposal.start_date %></li>
+    <li><%= proposal.end_date %></li>
+    <li><%= proposal.total_amount %></li>
+
+
+    <%= link_to 'Imprimir Comprovante', proposal_print_path(proposal) %>
+  <% end %>
+<%end %>

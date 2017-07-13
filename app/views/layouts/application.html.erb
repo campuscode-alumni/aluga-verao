@@ -3,6 +3,8 @@
   <head>
     <title>AlugaTemporada</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= favicon_link_tag 'sun.gif' %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,19 +15,28 @@
         <nav class="navbar navbar-inverse">
           <div class="container">
             <div class="navbar-header">
+              <%= image_tag "sun.gif", alt:"Brand", class: 'navbar-brand', style:'width: 60px; height: 60px;' %>
               <%= link_to 'Aluga Verão', root_path, class: "navbar-brand" %>
             </div>
             <div class="navbar-right">
               <label class="navbar-text">Bem vindo ao Aluga Verão</label>
-              <%= render 'shared/filter_form' %>
+                <%= render 'shared/filter_form' %>
+              <% if user_signed_in? %>
+                <%= link_to 'Minhas propostas', my_proposals_path, class: 'btn btn-primary', style: 'margin-top: 7px' %>
+                <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-primary', style: 'margin-top: 7px'  %>
+              <% else %>
+                <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary', style: 'margin-top: 7px' %>
+                <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-primary', style: 'margin-top: 7px' %>
+              <% end %>
+
+
             </div>
           </div>
         </nav>
       </header>
+
     <main>
-
       <div class="container">
-
         <% if flash[:error] %>
           <div class="row">
             <div class="alert alert-danger">
@@ -33,11 +44,15 @@
             </div>
           </div>
         <% end %>
+        <div class="row">
+          <p class="notice"><%= notice %></p>
+        </div>
 
+        <div class="row">
+          <p class="alert"><%= alert %></p>
+        </div>
         <%= yield %>
-
       </div>
-
     </main>
   </body>
 </html>

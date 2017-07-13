@@ -2,6 +2,7 @@ class Proposal < ApplicationRecord
   validates :start_date, :end_date, :total_guests, :name, :email, :cpf,
             :phone, :observation, presence: { message: 'Houve um erro ao tentar enviar a proposta' }
   belongs_to :property
+  belongs_to :user
 
   after_validation :calculate_total_amount
 
