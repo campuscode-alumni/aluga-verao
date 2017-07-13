@@ -37,6 +37,6 @@ feature 'Owner edit daily price range' do
     fill_in 'Valor da diaria', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_css('h3', text: 'Houve um erro ao tentar editar o preço por periodo')
+    expect(page).to have_css('label', text: 'Houve um erro ao tentar editar o preço por periodo')
   end
 end

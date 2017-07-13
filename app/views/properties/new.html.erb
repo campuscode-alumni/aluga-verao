@@ -1,69 +1,70 @@
-<%= flash[:error] %>
+<div class='row'>
+  <h1>Cadastrar Imovel</h1>
+  <div class='col-md-6'>
+    <%= form_for  @property do |f| %>
 
-<%= form_for  @property do |f| %>
+      <div class="form-group">
+        <%= f.label :title, 'Titulo' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
 
-    <div>
-      <%= f.label :title, 'Titulo'  %><br>
-      <%= f.text_field :title %>
-    </div>
-    <div>
-        <%= f.label :city, 'Cidade'  %><br>
-        <%= f.text_field :city %>
-    </div>
+      <div class="form-group">
+        <%= f.label :city, 'Cidade' %>
+        <%= f.text_field :city, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :state, 'Estado'  %><br>
-        <%= f.text_field :state %>
-    </div>
+      <div class="form-group">
+        <%= f.label :state, 'Estado' %>
+        <%= f.text_field :state, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :property_type, 'Tipo'  %><br>
-        <%= f.text_field :property_type %>
-    </div>
+      <div class="form-group">
+        <%= f.label :property_type, 'Tipo' %>
+        <%= f.text_field :property_type, class: 'form-control'%>
+      </div>
 
-    <div>
-        <%= f.label :daily_rate, 'Preco'  %><br>
-        <%= f.text_field :daily_rate %>
-    </div>
+      <div class="form-group">
+        <%= f.label :daily_rate, 'Preco' %>
+        <%= f.text_field :daily_rate, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :maximum_guests, 'Capacidade'  %><br>
-        <%= f.text_field :maximum_guests %>
-    </div>
+      <div class="form-group">
+        <%= f.label :maximum_guests, 'Capacidade' %>
+        <%= f.text_field :maximum_guests, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :maximum_rent, 'Max Pessoas'  %><br>
-        <%= f.text_field :maximum_rent %>
-    </div>
+      <div class="form-group">
+        <%= f.label :minimun_rent, 'Minimo de dias para hospedagem' %>
+        <%= f.text_field :minimun_rent, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :minimun_rent, 'Min Pessoas'  %><br>
-        <%= f.text_field :minimun_rent %>
-    </div>
+      <div class="form-group">
+        <%= f.label :maximum_rent, 'Maximo de dias para hospedagem' %>
+        <%= f.text_field :maximum_rent, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :rent_purpose, 'Finalidade'  %><br>
-        <%= f.text_field :rent_purpose %>
-    </div>
+      <div class="form-group">
+        <%= f.label :rent_purpose, 'Finalidade' %>
+        <%= f.text_field :rent_purpose, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :rules, 'Regras'  %><br>
-        <%= f.text_field :rules %>
-    </div>
+      <div class="form-group">
+        <%= f.label :rules, 'Regras' %>
+        <%= f.text_field :rules, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :owner, 'Dono'  %><br>
-        <%= f.text_field :owner %>
-    </div>
+      <div class="form-group">
+        <%= f.label :owner, 'Dono' %>
+        <%= f.text_field :owner, class: 'form-control' %>
+      </div>
 
-    <div>
-        <%= f.label :description, 'Descricao'  %><br>
-        <%= f.text_field :description %>
-    </div>
+      <div class="form-group">
+        <%= f.label :description, 'Descricao' %>
+        <%= f.text_field :description, class: 'form-control' %>
+      </div>
 
+      <%= f.submit 'Enviar', class: "btn btn-default" %>
 
-    <div>
-        <%= f.submit 'Enviar'%>
-    </div>
-
-<% end %>
+    <% end %>
+  </div>
+</div>

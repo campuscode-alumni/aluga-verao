@@ -1,33 +1,54 @@
-<% @proposal.errors.full_messages.each do |message| %>
-  <h3><%= message %></h3>
-<% end %>
+<% unless @proposal.errors.full_messages.empty? %>
+  <div class="alert alert-danger">
+    <% @proposal.errors.full_messages.each do |message| %>
+      <label><%= message %></label>
+    <% end %>
+  </div>
+<%end%>
 
-<h1>Enviar Proposta</h1>
+<div class='row'>
+  <h1>Enviar Proposta</h1>
+  <div class='col-md-6'>
+    <%= form_for([@property, @proposal]) do |f| %>
+      <div class="form-group">
+        <%= f.label :start_date, 'Data Inicial' %>
+        <%= f.date_field :start_date, min: Date.today, class: 'form-control'%>
+      </div>
 
-<%= form_for([@property, @proposal]) do |f| %>
-  <%= f.label :start_date, 'Data Inicial' %>
-  <%= f.date_field :start_date, min: Date.today %>
+      <div class="form-group">
+        <%= f.label :end_date, 'Data Final' %>
+        <%= f.date_field :end_date, min: Date.today, class: 'form-control' %>
+      </div>
 
-  <%= f.label :end_date, 'Data Final' %>
-  <%= f.date_field :end_date, min: Date.today %>
+      <div class="form-group">
+        <%= f.label :total_guests, 'Quantidade de hóspedes' %>
+        <%= f.number_field :total_guests, class: 'form-control'%>
+      </div>
 
-  <%= f.label :total_guests, 'Quantidade de hóspedes' %>
-  <%= f.number_field :total_guests %>
+      <div class="form-group">
+        <%= f.label :name, 'Nome' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
 
-  <%= f.label :name, 'Nome' %>
-  <%= f.text_field :name %>
+      <div class="form-group">
+        <%= f.label :email, 'Email' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
 
-  <%= f.label :email, 'Email' %>
-  <%= f.email_field :email %>
+      <div class="form-group">
+        <%= f.label :cpf, 'CPF' %>
+        <%= f.text_field :cpf, size: 11, class: 'form-control'%>
+      </div>
+      <div class="form-group">
+        <%= f.label :phone, 'Telefone' %>
+        <%= f.phone_field :phone, class: 'form-control' %>
+      </div>
 
-  <%= f.label :cpf, 'CPF' %>
-  <%= f.text_field :cpf, size: 11 %>
-
-  <%= f.label :phone, 'Telefone' %>
-  <%= f.phone_field :phone %>
-
-  <%= f.label :observation, 'Observações' %>
-  <%= f.text_area :observation %>
-
-  <%= f.submit 'Enviar' %>
-<% end %>
+      <div class="form-group">
+        <%= f.label :observation, 'Observações' %>
+        <%= f.text_area :observation, class: 'form-control'%>
+      </div>
+      <%= f.submit 'Enviar', class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

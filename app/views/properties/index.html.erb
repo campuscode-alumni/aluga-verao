@@ -1,11 +1,12 @@
-<table>
+<table class="table table-striped">
   <tr>
-    <th>Nome da Propriedade: </th>
+    <th>Nome da Propriedade</th>
+    <th></th>
   </tr>
   <% @properties.each do |property| %>
       <tr>
         <td><%= property.title %></td>
-        <td><%= link_to 'Editar preços', property_price_ranges_path(property)%>
+        <td><%= link_to 'Editar preços', property_price_ranges_path(property), class: 'btn btn-primary'%>
       </tr>
     <% end %>
 </table>

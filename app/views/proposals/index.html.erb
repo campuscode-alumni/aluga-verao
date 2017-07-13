@@ -1,12 +1,18 @@
 <h1>Minhas propostas</h1>
 
+<section>
   <% if @proposals.empty? %>
     <p>Nenhuma proposta ainda</p>
   <% else %>
     <% @proposals.each do |proposal| %>
-      <h1><%= link_to proposal.property.description, proposal_path(proposal) %>
-      <li><%= proposal.start_date.strftime( '%d/%m/%Y') %> </li>
-      <li><%= proposal.end_date.strftime( '%d/%m/%Y' ) %> </li>
-      <li><%= proposal.total_amount %> </li>
+    <div class="col-md-4">
+      <h3><%= link_to proposal.property.description, proposal_path(proposal) %></h3>
+      <ul>
+        <li>Data Inicial: <%= I18n.l(proposal.start_date)%></li>
+        <li>Data Final: <%= I18n.l(proposal.end_date) %></li>
+        <li>Valor total da hospedagem: <%= number_to_currency(proposal.total_amount) %> </li>
+      </ul>
+    </div>
     <% end %>
   <% end %>
+</section>

@@ -1,13 +1,16 @@
-<table>
+<table class="table table-striped">
   <tr>
-    <th>Nome da Propriedade: </th>
+    <th>Nome da Propriedade</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
   <% @price_ranges.each do |price_range| %>
       <tr>
         <td><%= I18n.l(price_range.start_date) %></td>
         <td><%= I18n.l(price_range.end_date) %></td>
         <td><%= number_to_currency(price_range.daily_rate) %></td>
-        <td><%= link_to 'Editar periodo', edit_price_range_path(price_range)%>
+        <td><%= link_to 'Editar periodo', edit_price_range_path(price_range), class: 'btn btn-primary'%>
       </tr>
     <% end %>
 </table>

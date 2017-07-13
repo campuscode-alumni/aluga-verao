@@ -17,10 +17,6 @@ Rails.application.routes.draw do
     post 'accept', to: 'proposals#accept_proposal'
     get 'print', to: 'proposals#print_cupom'
   end
-  resources :price_ranges, only: [:show, :edit, :update]
 
-  resources :properties, only:[:new, :create, :show] do
-    get 'filtered', on: :collection
-    resources :proposals, only: [:create, :new]
-  end
+  resources :price_ranges, only: [:show, :edit, :update]
 end

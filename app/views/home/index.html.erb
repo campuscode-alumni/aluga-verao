@@ -1,14 +1,22 @@
-<h1> Aluguel de imoveis </h1>
+<section>
+  <h1> Aluguel de imoveis </h1>
 
-<% @properties.each do |property| %>
-  <h1><%= link_to property.title, property %></h1>
-  <ul>
-    <li><%= property.city %></li>
-    <li><%= property.state %></li>
-    <li> <%= property.rent_purpose %></li>
-  </ul>
-<% end %>
 
-<%= link_to 'Cadastrar Imovel', new_property_path %>
-<%= link_to 'Meus imoveis', properties_path %>
-<%= link_to 'Ver propostas', proposals_path %>
+  <%= link_to 'Cadastrar Imovel', new_property_path, class: "btn btn-primary" %>
+  <%= link_to 'Meus imoveis', properties_path, class: "btn btn-primary"%>
+  <%= link_to 'Ver propostas', proposals_path, class: "btn btn-primary" %>
+
+  <br/>
+
+  <% @properties.each do |property| %>
+  <div class="col-md-4">
+      <h3><%= link_to property.title, property %></h3>
+      <ul>
+        <li>Cidade: <%= property.city %></li>
+        <li>Estado: <%= property.state %></li>
+        <li>Finalidade: <%= property.rent_purpose %></li>
+        <li>Valor da diaria: <%= number_to_currency(property.daily_rate) %></li>
+      </ul>
+  </div>
+  <% end %>
+</section>

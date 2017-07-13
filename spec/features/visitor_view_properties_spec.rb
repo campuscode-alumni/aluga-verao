@@ -9,7 +9,7 @@ feature 'User view properties ' do
     # simulate parada
     visit root_path
 
-    expect(page).to have_css('h1', text: 'AP Top' )
+    expect(page).to have_css('h3', text: 'AP Top' )
     expect(page).to have_link('AP Top')
   end
 

@@ -1,7 +1,3 @@
-<% if flash[:error] %>
-  <%= flash[:error] %>
-<% end %>
-
 <h1><%= @property.title %></h1>
 <ul>
   <li>Tipo da Propriedade: <%= @property.property_type %></li>
@@ -18,6 +14,7 @@
 <label>Descrição:</label>
 <p><%= @property.description %></p>
 
-<%= link_to 'Cadastrar valor por periodo', new_property_price_range_path(@property) %>
-<%= link_to 'Enviar Proposta', new_property_proposal_path(@property) %>
-<%= link_to 'Editar', edit_property_path(@property) %>
+
+<%= link_to 'Cadastrar valor por periodo', new_property_price_range_path(@property), class: "btn btn-primary" %>
+<%= link_to 'Enviar Proposta', new_property_proposal_path(@property), class: "btn btn-primary" %>
+<%= link_to 'Editar', edit_property_path(@property), class: "btn btn-primary" %>

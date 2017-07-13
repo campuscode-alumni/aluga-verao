@@ -18,7 +18,7 @@ require 'rails_helper'
 
       click_on 'Enviar'
 
-      expect(page).to have_css('h2', text: 'Preço cadastrado com sucesso')
+      expect(page).to have_css('h1', text: 'Preço cadastrado com sucesso')
       expect(page).to have_css('li', text: '05/12/2017')
       expect(page).to have_css('li', text: '05/01/2018')
       expect(page).to have_css('li', text: 'R$ 150,00')
@@ -41,7 +41,7 @@ require 'rails_helper'
 
       click_on 'Enviar'
 
-      expect(page).to have_css('h3', text: 'Houve um erro ao tentar cadastrar o preço por periodo')
+      expect(page).to have_css('label', text: 'Houve um erro ao tentar cadastrar o preço por periodo')
     end
 
     scenario 'and start_date < today' do
@@ -60,7 +60,7 @@ require 'rails_helper'
 
     click_on 'Enviar'
 
-    expect(page).to have_css('h3', text: 'Data inicial deve ser maior ou igual a data de hoje')
+    expect(page).to have_css('label', text: 'Data inicial deve ser maior ou igual a data de hoje')
     end
 
     scenario 'and start_date < today' do
@@ -79,7 +79,7 @@ require 'rails_helper'
 
       click_on 'Enviar'
 
-      expect(page).to have_css('h3', text: 'Data final deve ser maior do que a data inicial')
+      expect(page).to have_css('label', text: 'Data final deve ser maior do que a data inicial')
     end
 
     scenario 'and period strikes another period' do
@@ -108,7 +108,7 @@ require 'rails_helper'
 
       click_on 'Enviar'
 
-      expect(page).to have_css('h3', text: 'Já existe um preço personalizado para esse periodo')
+      expect(page).to have_css('label', text: 'Já existe um preço personalizado para esse periodo')
     end
 
   end

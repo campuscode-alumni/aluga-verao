@@ -20,10 +20,10 @@ scenario 'successfully' do
     click_on 'Ver propostas'
 
     expect(page).to have_content('sitio do meu vo')
-    expect(page).to have_css('h1', text: 'sitio do meu vo')
+    expect(page).to have_css('h3', text: 'sitio do meu vo')
     expect(page).to have_css('li', text: proposal.start_date.strftime( '%d/%m/%Y'))
     expect(page).to have_css('li', text: proposal.end_date.strftime( '%d/%m/%Y' ))
-    expect(page).to have_css('li', text: proposal.total_amount)
+    expect(page).to have_css('li', text: 'R$ 180,00')
   end
 
 
@@ -46,10 +46,7 @@ scenario 'successfully' do
 
 
     expect(page).to have_content('Proposta aceita..')
-    expect(page).not_to have_css('h1', text: 'sitio do meu vo')
-
-
-
+    expect(page).not_to have_css('h3', text: 'sitio do meu vo')
   end
 
   scenario 'and property not avaliable on period' do
