@@ -3,6 +3,8 @@
   <head>
     <title>AlugaTemporada</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -17,8 +19,13 @@
             </div>
             <div class="navbar-right">
               <p class="navbar-text">Bem vindo ao Aluga Verão</p>
-              <%= link_to 'Login', new_user_session_path %>
-              <%= link_to 'Minhas propostas', my_proposals_path %>
+              <% if user_signed_in? %>
+                <%= link_to 'Minhas propostas', my_proposals_path %>
+                <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %>
+              <% else %>
+                <%= link_to 'Login', new_user_session_path %>
+                <%= link_to 'Cadastrar', new_user_registration_path %>
+              <% end %>
               <%= render 'shared/filter_form' %>
             </div>
           </div>
@@ -27,6 +34,8 @@
       <%= flash[:error] %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-    <%= yield %>
+      <div class = "container">
+        <%= yield %>
+      </div>
   </body>
 </html>
