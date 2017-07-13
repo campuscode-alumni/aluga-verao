@@ -28,7 +28,6 @@ feature 'visitor_send_proposal' do
 
     click_on 'Enviar'
 
-    expect(page).to have_css('h2', text: 'Proposta enviada com sucesso')
     expect(page).to have_css('li', text: '05/09/2017')
     expect(page).to have_css('li', text: '10/09/2017')
     expect(page).to have_css('li', text: 'Valor total: R$ 250,00')
@@ -54,7 +53,7 @@ feature 'visitor_send_proposal' do
     fill_in 'Observações', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_css('h3', text: 'Houve um erro ao tentar enviar a proposta')
+    expect(page).to have_css('label', text: 'Houve um erro ao tentar enviar a proposta')
   end
 
   scenario 'and start date < today' do
@@ -77,7 +76,7 @@ feature 'visitor_send_proposal' do
     fill_in 'Observações', with: 'Pretendo levar um cachorro'
     click_on 'Enviar'
 
-    expect(page).to have_css('h3', text: 'Data inicial deve ser maior do que a data de hoje')
+    expect(page).to have_css('label', text: 'Data inicial deve ser maior do que a data de hoje')
 
   end
   scenario 'and end date < start date' do
@@ -100,7 +99,7 @@ feature 'visitor_send_proposal' do
     fill_in 'Observações', with: 'Pretendo levar um cachorro'
     click_on 'Enviar'
 
-    expect(page).to have_css('h3', text: 'Data final deve ser maior do que a data inicial')
+    expect(page).to have_css('label', text: 'Data final deve ser maior do que a data inicial')
   end
 
   scenario 'and total days < minimun rent' do
@@ -123,7 +122,7 @@ feature 'visitor_send_proposal' do
     fill_in 'Observações', with: 'Pretendo levar um cachorro'
     click_on 'Enviar'
 
-    expect(page).to have_css('h3', text: "Quantidade de dias para hospedagem precisa ser maior que #{property.minimun_rent}")
+    expect(page).to have_css('label', text: "Quantidade de dias para hospedagem precisa ser maior que #{property.minimun_rent}")
   end
 
   scenario 'and total days > maximumn rent' do
@@ -146,7 +145,7 @@ feature 'visitor_send_proposal' do
     fill_in 'Observações', with: 'Pretendo levar um cachorro'
     click_on 'Enviar'
 
-    expect(page).to have_css('h3', text: "Quantidade de dias para hospedagem precisa ser menor que #{property.maximum_rent}")
+    expect(page).to have_css('label', text: "Quantidade de dias para hospedagem precisa ser menor que #{property.maximum_rent}")
   end
 
   scenario 'and expect price up to date' do
@@ -172,7 +171,6 @@ feature 'visitor_send_proposal' do
 
     click_on 'Enviar'
 
-    expect(page).to have_css('h2', text: 'Proposta enviada com sucesso')
     expect(page).to have_css('li', text: '05/09/2017')
     expect(page).to have_css('li', text: '10/09/2017')
     expect(page).to have_css('li', text: 'Valor total: R$ 500,00')

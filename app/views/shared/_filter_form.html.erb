@@ -1,5 +1,6 @@
-<%= form_tag filtered_properties_path, method: :get do %>
-  <%= text_field_tag :filter, '', placeholder: 'Digite a cidade ou estado para buscar' %>
-  <%= select_date Date.today, prefix: :date %>
-  <%= submit_tag 'Filtrar' %>
+<%= form_tag filtered_properties_path, method: :get, class: "navbar-form navbar-left" do %>
+<div class="form-group">
+  <%= text_field_tag :filter, '', placeholder: 'Cidade para filtrar', class: "form-control" %>
+</div>
+  <%= submit_tag 'Filtrar', class: "btn btn-default" %>
 <% end %>

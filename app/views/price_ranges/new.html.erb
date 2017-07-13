@@ -1,26 +1,32 @@
-<% if flash[:error] %>
-  <h3><%= flash[:error] %></h3>
+<% unless @price_range.errors.full_messages.empty? %>
+  <div class="alert alert-danger">
+    <% @price_range.errors.full_messages.each do |message| %>
+      <label><%= message %></label>
+    <% end %>
+  </div>
 <%end%>
 
-<% @price_range.errors.full_messages.each do |message| %>
-  <h3><%= message %></h3>
-<% end %>
+<div class="row">
+  <h1>Cadastrar preço por periodo</h1>
+  <div class="col-md-2">
+    <%= form_for([@property, @price_range]) do |f| %>
+      <div class="form-group">
+        <%= f.label :start_date, 'Data Inicial' %>
+        <%= f.date_field :start_date, min: Date.today, class:'form-control' %>
+      </div>
 
-<%= form_for([@property, @price_range]) do |f| %>
+      <div class="form-group">
+        <%= f.label :end_date, 'Data Final' %>
+        <%= f.date_field :end_date, min: Date.today, class:'form-control' %>
+      </div>
 
-  <div>
-    <%= f.label :start_date, 'Data Inicial' %>
-    <%= f.date_field :start_date, min: Date.today %>
+      <div class="form-group">
+        <%= f.label :daily_rate, 'Valor da diaria' %>
+        <%= f.number_field :daily_rate, class:'form-control' %>
+      </div>
+
+      <%= f.submit 'Enviar', class: "btn btn-default" %>
+
+    <% end %>
   </div>
-  <div>
-    <%= f.label :end_date, 'Data Final' %>
-    <%= f.date_field :end_date, min: Date.today %>
-  </div>
-  <div>
-    <%= f.label :daily_rate, 'Valor da diaria' %>
-    <%= f.number_field :daily_rate %>
-  </div>
-
-  <%= f.submit 'Enviar' %>
-
-<% end %>
+</div>

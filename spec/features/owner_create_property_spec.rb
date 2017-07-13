@@ -20,8 +20,8 @@ feature 'Owner create property' do
     fill_in 'Tipo', with: property.property_type
     fill_in 'Preco', with: property.daily_rate
     fill_in 'Capacidade', with: property.maximum_guests
-    fill_in 'Max Pessoas', with: property.maximum_rent
-    fill_in 'Min Pessoas', with: property.minimun_rent
+    fill_in 'Maximo de dias para hospedagem', with: property.maximum_rent
+    fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
     fill_in 'Regras', with: property.rules
     fill_in 'Finalidade', with: property.rent_purpose
     fill_in 'Dono', with: property.owner
@@ -60,8 +60,8 @@ feature 'Owner create property' do
     fill_in 'Tipo', with: property.property_type
     fill_in 'Preco', with: property.daily_rate
     fill_in 'Capacidade', with: property.maximum_guests
-    fill_in 'Max Pessoas', with: property.maximum_rent
-    fill_in 'Min Pessoas', with: property.minimun_rent
+    fill_in 'Maximo de dias para hospedagem', with: property.maximum_rent
+    fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
     fill_in 'Regras', with: property.rules
     fill_in 'Finalidade', with: property.rent_purpose
 

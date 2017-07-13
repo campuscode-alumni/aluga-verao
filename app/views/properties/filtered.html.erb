@@ -1,15 +1,19 @@
-<h2>Imoveis filtrados por: <%= @filter %></h2>
-<% if @properties.empty? %>
-  <h2>Nenhum imovel encontrado nessa cidade.</h2>
-<% else %>
-<% @properties.each do |property| %>
-  <h3><%=property.title%></h3>
-  <ul>
-    <li>Cidade: <%= property.city%> </li>
-    <li>Estado: <%= property.state%></li>
-    <li>Tipo de residência: <%= property.property_type%></li>
-    <li>Quantidade máxima de hóspedes: <%= property.maximum_guests%></li>
-    <li>Valor da diária: <%= property.daily_rate%></li>
-  </ul>
+<section>
+  <h1>Imoveis filtrados por: <%= @filter %></h1>
+  <% if @properties.empty? %>
+    <h2>Nenhum imovel encontrado nessa cidade.</h2>
+  <% else %>
+    <% @properties.each do |property| %>
+      <div class="col-md-4">
+        <h3><%=property.title%></h3>
+        <ul>
+          <li>Cidade: <%= property.city%> </li>
+          <li>Estado: <%= property.state%></li>
+          <li>Tipo de residência: <%= property.property_type%></li>
+          <li>Quantidade máxima de hóspedes: <%= property.maximum_guests%></li>
+          <li>Valor da diária: <%= number_to_currency(property.daily_rate)%></li>
+        </ul>
+      </div>
+    <%end%>
   <%end%>
-<%end%>
+</section>

@@ -10,19 +10,34 @@
 
   <body>
     <header>
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
+        <nav class="navbar navbar-inverse">
+          <div class="container">
             <div class="navbar-header">
-              <h1><%= link_to 'Aluga Verão', root_path %></h1>
+              <%= link_to 'Aluga Verão', root_path, class: "navbar-brand" %>
             </div>
             <div class="navbar-right">
-              <p class="navbar-text">Bem vindo ao Aluga Verão</p>
+              <label class="navbar-text">Bem vindo ao Aluga Verão</label>
               <%= render 'shared/filter_form' %>
             </div>
           </div>
         </nav>
       </header>
-      <%= flash[:error] %>
-    <%= yield %>
+    <main>
+
+      <div class="container">
+
+        <% if flash[:error] %>
+          <div class="row">
+            <div class="alert alert-danger">
+              <label><%= flash[:error] %></label>
+            </div>
+          </div>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+
+    </main>
   </body>
 </html>
