@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  before_action :set_collection, only: [:new, :create]
 
   def index
     @properties = Property.all
@@ -34,11 +35,16 @@ class PropertiesController < ApplicationController
       @property.daily_rate = price_range.daily_rate
     end
   end
-end
 
-private
+  private
 
-def property_params
-  params.require(:property).permit(:title, :city, :state, :description, :maximum_guests, :daily_rate,
-                 :property_type_id, :maximum_rent, :minimun_rent, :rules, :rent_purpose, :owner)
+  def property_params
+    params.require(:property).permit(:title, :city, :state, :description, :maximum_guests, :daily_rate,
+                   :property_type_id, :maximum_rent, :minimun_rent, :rules, :rent_purpose, :owner)
+  end
+
+  def set_collection
+    @property_types = PropertyType.all
+  end
+
 end
