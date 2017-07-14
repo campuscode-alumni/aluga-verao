@@ -4,9 +4,11 @@ feature 'admin view proposal' do
 
 scenario 'successfully' do
 
-  user = User.create(email: 'eliza@rails.com', password: 'test123')
+    user = User.create(email: 'eliza@rails.com', password: 'test123')
 
-    property = Property.create( title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo',
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create( title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
                                               daily_rate: 90, photo: 'sitio.jpg',
                                               maximum_guests: 5, minimun_rent: 2, maximum_rent: 10,
                                               rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
@@ -30,7 +32,9 @@ scenario 'successfully' do
   scenario 'and accepts proposal' do
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
-    property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo',
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
                                               daily_rate: 90, photo: 'sitio.jpg',
                                               maximum_guests: 5, minimun_rent: 2, maximum_rent: 10,
                                               rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
@@ -52,7 +56,9 @@ scenario 'successfully' do
   scenario 'and property not avaliable on period' do
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
-    property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo',
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
                                               daily_rate: 90, photo: 'sitio.jpg',
                                               maximum_guests: 5, minimun_rent: 2, maximum_rent: 20,
                                               rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
@@ -61,7 +67,8 @@ scenario 'successfully' do
                               observation: 'nao pisar na grama', start_date: 5.days.from_now, end_date: 16.days.from_now,
                               total_amount: 900, property: property, accepted: true, user: user)
 
-    other_property = Property.create(title: 'casa da praia', city: 'SaoPaulo', state: 'SP', property_type: 'casa de praia', description: 'casa de praia no guaruja',
+
+    other_property = Property.create(title: 'casa da praia', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'casa de praia no guaruja',
                                               daily_rate: 100, photo: 'casa_no_guaruja.jpg',
                                               maximum_guests: 10, minimun_rent: 5, maximum_rent: 3,
                                               rules: 'MUITAS regras e mimimi', rent_purpose: 'carnaval', owner: 'Eliza')

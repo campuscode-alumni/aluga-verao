@@ -3,8 +3,9 @@ require 'rails_helper'
 feature 'visitor_send_proposal' do
   scenario 'successfully' do
     #cria os dados necessarios
+    property_type = PropertyType.create(name: 'sitio')
     user = User.create(email: 'eliza@rails.com', password: 'test123')
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
@@ -43,7 +44,8 @@ feature 'visitor_send_proposal' do
 
   scenario 'and missing some attribute' do
     #criando os dados necessarios
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property_type = PropertyType.create(name: 'sitio')
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
@@ -65,7 +67,9 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and start date < today' do
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
@@ -88,7 +92,9 @@ feature 'visitor_send_proposal' do
 
   end
   scenario 'and end date < start date' do
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
@@ -111,7 +117,9 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and total days < minimun rent' do
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
@@ -134,7 +142,9 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and total days > maximumn rent' do
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
@@ -157,9 +167,11 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and expect price up to date' do
+    property_type = PropertyType.create(name: 'sitio')
+
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')

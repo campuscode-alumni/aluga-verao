@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713005241) do
+ActiveRecord::Schema.define(version: 20170713235549) do
 
   create_table "price_ranges", force: :cascade do |t|
     t.integer "property_id"
@@ -34,10 +34,17 @@ ActiveRecord::Schema.define(version: 20170713005241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner"
-    t.string "property_type"
     t.string "title"
     t.decimal "daily_rate"
     t.integer "maximum_guests"
+    t.integer "property_type_id"
+    t.index ["property_type_id"], name: "index_properties_on_property_type_id"
+  end
+
+  create_table "property_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "proposals", force: :cascade do |t|

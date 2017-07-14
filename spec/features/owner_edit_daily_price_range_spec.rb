@@ -2,7 +2,8 @@ require 'rails_helper'
 
 feature 'Owner edit daily price range' do
   scenario 'successfully' do
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property_type = PropertyType.create(name: 'sitio')
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
@@ -22,7 +23,8 @@ feature 'Owner edit daily price range' do
     expect(page).to have_css('li', text: 'R$ 150,00')
   end
   scenario 'and is missing price' do
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type: 'Apartamento',
+    property_type = PropertyType.create(name: 'sitio')
+    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
                               daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')

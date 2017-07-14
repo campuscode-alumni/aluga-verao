@@ -3,67 +3,64 @@ require 'rails_helper'
 feature 'Owner create property' do
 
   scenario 'successfully' do
+    property_type = PropertyType.create(name: 'sitio')
 
-    #criar um imovel
-    property = Property.create(  title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo muito bac', daily_rate: 90, photo: 'sitio.jpg',
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
-
-
+    user = User.create(email: 'eliza@rails.com', password: 'test123')
 
     #simula o cadastro
     visit root_path
     click_on 'Cadastrar Imovel'
     #preencher o form
-    fill_in 'Titulo', with: property.title
-    fill_in 'Cidade', with: property.city
-    fill_in 'Estado', with: property.state
-    fill_in 'Tipo', with: property.property_type
-    fill_in 'Preco', with: property.daily_rate
-    fill_in 'Capacidade', with: property.maximum_guests
-    fill_in 'Maximo de dias para hospedagem', with: property.maximum_rent
-    fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
-    fill_in 'Regras', with: property.rules
-    fill_in 'Finalidade', with: property.rent_purpose
-    fill_in 'Dono', with: property.owner
-    fill_in 'Descricao', with: property.description
+    fill_in 'Titulo', with: 'sitio do meu vo'
+    fill_in 'Cidade', with: 'SaoPaulo'
+    fill_in 'Estado', with: 'SP'
+    select 'sitio', from: 'Tipo do imovel'
+    fill_in 'Preco', with: '90'
+    fill_in 'Capacidade', with: '5'
+    fill_in 'Maximo de dias para hospedagem', with: '3'
+    fill_in 'Minimo de dias para hospedagem', with: '2'
+    fill_in 'Regras', with: 'varias regras mimimi'
+    fill_in 'Finalidade', with: 'ferias'
+    fill_in 'Dono', with: 'vo Carlos'
+    fill_in 'Descricao', with: 'sitio do meu vo muito bac'
 
     click_on 'Enviar'
 
     #excepct stranger things
-    expect(page).to have_css('h1', text: property.title)
-    expect(page).to have_css('li', text: property.state)
-    expect(page).to have_css('li', text: property.city)
-    expect(page).to have_css('li', text: property.property_type)
+    expect(page).to have_css('h1', text: 'sitio do meu vo')
+    expect(page).to have_css('li', text: 'SP')
+    expect(page).to have_css('li', text: 'SaoPaulo')
+    expect(page).to have_css('li', text: 'sitio')
     expect(page).to have_css('li', text: 'R$ 90,00')
-    expect(page).to have_css('li', text: property.maximum_guests)
-    expect(page).to have_css('li', text: property.maximum_rent)
-    expect(page).to have_css('li', text: property.minimun_rent)
-    expect(page).to have_css('li', text: property.rules)
-    expect(page).to have_css('li', text: property.rent_purpose)
-    expect(page).to have_css('li', text: property.owner)
-    expect(page).to have_css('p', text: property.description)
+    expect(page).to have_css('li', text: '5')
+    expect(page).to have_css('li', text: '3')
+    expect(page).to have_css('li', text: '2')
+    expect(page).to have_css('li', text: 'varias regras mimimi')
+    expect(page).to have_css('li', text: 'ferias')
+    expect(page).to have_css('li', text: 'vo Carlos')
+    expect(page).to have_css('p', text: 'sitio do meu vo muito bac')
 
   end
 
   scenario 'and must fill owner' do
-
-    property = Property.new( city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo', daily_rate: 90.0, photo: 'sitio.jpg',
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias')
-
+    property_type = PropertyType.create(name: 'sitio')
 
     visit root_path
 
     click_on 'Cadastrar Imovel'
-    fill_in 'Descricao', with: property.description
-    fill_in 'Cidade', with: property.city
-    fill_in 'Estado', with: property.state
-    fill_in 'Tipo', with: property.property_type
-    fill_in 'Preco', with: property.daily_rate
-    fill_in 'Capacidade', with: property.maximum_guests
-    fill_in 'Maximo de dias para hospedagem', with: property.maximum_rent
-    fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
-    fill_in 'Regras', with: property.rules
-    fill_in 'Finalidade', with: property.rent_purpose
+
+    fill_in 'Titulo', with: 'sitio do meu vo'
+    fill_in 'Cidade', with: 'SaoPaulo'
+    fill_in 'Estado', with: 'SP'
+    select 'sitio', from: 'Tipo do imovel'
+    fill_in 'Preco', with: '90'
+    fill_in 'Capacidade', with: '5'
+    fill_in 'Maximo de dias para hospedagem', with: '3'
+    fill_in 'Minimo de dias para hospedagem', with: '2'
+    fill_in 'Regras', with: 'varias regras mimimi'
+    fill_in 'Finalidade', with: 'ferias'
+    fill_in 'Dono', with: ''
+    fill_in 'Descricao', with: 'sitio do meu vo muito bac'
 
     click_on 'Enviar'
 
