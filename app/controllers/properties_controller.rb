@@ -6,6 +6,7 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    @purpose = Purpose.all
   end
 
   def create
@@ -37,6 +38,7 @@ class PropertiesController < ApplicationController
 
   def edit
     @property = Property.find(params[:id])
+    @purpose = Purpose.all
   end
 
   def update

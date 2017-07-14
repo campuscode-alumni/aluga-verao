@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713005241) do
+ActiveRecord::Schema.define(version: 20170714012039) do
 
   create_table "price_ranges", force: :cascade do |t|
     t.integer "property_id"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20170713005241) do
     t.integer "minimun_rent"
     t.integer "maximum_rent"
     t.text "rules"
-    t.string "rent_purpose"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner"
@@ -38,6 +37,26 @@ ActiveRecord::Schema.define(version: 20170713005241) do
     t.string "title"
     t.decimal "daily_rate"
     t.integer "maximum_guests"
+    t.integer "purpose_id"
+    t.index ["purpose_id"], name: "index_properties_on_purpose_id"
+  end
+
+  create_table "property_purposes", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "purpose_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_purposes_on_property_id"
+    t.index ["purpose_id"], name: "index_property_purposes_on_purpose_id"
+  end
+
+  create_table "propertypurposes", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "purpose_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_propertypurposes_on_property_id"
+    t.index ["purpose_id"], name: "index_propertypurposes_on_purpose_id"
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -57,6 +76,12 @@ ActiveRecord::Schema.define(version: 20170713005241) do
     t.integer "user_id"
     t.index ["property_id"], name: "index_proposals_on_property_id"
     t.index ["user_id"], name: "index_proposals_on_user_id"
+  end
+
+  create_table "purposes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
