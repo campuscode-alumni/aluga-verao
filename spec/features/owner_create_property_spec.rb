@@ -67,4 +67,37 @@ feature 'Owner create property' do
     expect(page).to have_content('Este imovel nao pode ser cadastrado sem um proprietario')
 
   end
+
+  scenario 'and edit a property' do
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create( title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo muito bac',
+                                daily_rate: 90, photo: 'sitio.jpg',
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+
+
+    visit root_path
+    click_on 'sitio do meu vo'
+    click_on 'Editar'
+
+    fill_in 'Titulo', with: 'Casa de campo'
+    fill_in 'Descricao', with: 'Casa de campo para temporada'
+    fill_in 'Cidade', with: 'Niteroi'
+    fill_in 'Estado', with: 'RJ'
+    select 'sitio', from: 'Tipo do imovel'
+    fill_in 'Preco', with: '100'
+    fill_in 'Capacidade', with: '10'
+    fill_in 'Maximo de dias para hospedagem', with: '9'
+    fill_in 'Minimo de dias para hospedagem', with: '3'
+    fill_in 'Regras', with: 'nao sujar a casa'
+    fill_in 'Finalidade', with: 'ferias'
+
+    click_on 'Enviar'
+
+    expect(page).to have_css('h1', text: 'Casa de campo')
+    expect(page).to have_css('li', text: 'Niteroi')
+    expect(page).to have_css('li', text: 'RJ')
+
+
+  end
 end

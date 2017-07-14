@@ -14,5 +14,7 @@
 <label>Descrição:</label>
 <p><%= @property.description %></p>
 
+
 <%= link_to 'Cadastrar valor por periodo', new_property_price_range_path(@property), class: "btn btn-primary" %>
 <%= link_to 'Enviar Proposta', new_property_proposal_path(@property), class: "btn btn-primary" %>
+<%= link_to 'Editar', edit_property_path(@property), class: "btn btn-primary" %>

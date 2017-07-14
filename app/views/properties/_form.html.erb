@@ -1,0 +1,65 @@
+<%= form_for  @property do |f| %>
+
+  <div class="form-group">
+    <%= f.label :title, 'Titulo' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :city, 'Cidade' %>
+    <%= f.text_field :city, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :state, 'Estado' %>
+    <%= f.text_field :state, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :property_type_id, 'Tipo do imovel' %>
+    <%= f.collection_select(:property_type_id, @property_types, :id, :name, class: 'form-control')%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :daily_rate, 'Preco' %>
+    <%= f.text_field :daily_rate, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :maximum_guests, 'Capacidade' %>
+    <%= f.text_field :maximum_guests, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :minimun_rent, 'Minimo de dias para hospedagem' %>
+    <%= f.text_field :minimun_rent, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :maximum_rent, 'Maximo de dias para hospedagem' %>
+    <%= f.text_field :maximum_rent, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :rent_purpose, 'Finalidade' %>
+    <%= f.text_field :rent_purpose, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :rules, 'Regras' %>
+    <%= f.text_field :rules, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :owner, 'Dono' %>
+    <%= f.text_field :owner, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, 'Descricao' %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Enviar', class: "btn btn-default" %>
+
+<% end %>

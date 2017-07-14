@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'my_proposals', to: 'proposals#my_proposals'
 
-  resources :properties, only:[:show, :new, :create, :index] do
+  root to: 'home#index'
+  resources :properties, only:[:show, :new, :create, :index, :edit, :update] do
     resources :proposals, only: [:new, :create]
     resources :price_ranges, only: [:new, :create, :index]
     get 'filtered', on: :collection

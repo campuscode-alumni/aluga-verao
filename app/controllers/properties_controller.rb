@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_collection, only: [:new, :create]
+  before_action :set_collection, only: [:new, :create, :edit, :update]
 
   def index
     @properties = Property.all
@@ -33,6 +33,20 @@ class PropertiesController < ApplicationController
     price_range = @property.price_ranges.where('(? between start_date and end_date)', Date.today).first
     unless price_range.nil?
       @property.daily_rate = price_range.daily_rate
+    end
+  end
+
+  def edit
+    @property = Property.find(params[:id])
+  end
+
+  def update
+    @property = Property.find(params[:id])
+    @property.update(property_params)
+    if @property.valid?
+      redirect_to @property
+    else
+      render :edit
     end
   end
 
