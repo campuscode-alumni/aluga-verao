@@ -1,7 +1,11 @@
 <h1><%= @property.title %></h1>
 <h3>Fotos do imóvel</h3>
 <br>
-<%= image_tag @property.photo.url %>
+<% if @property.photo.exists? %>
+  <%= image_tag @property.photo.url %>
+<% else %>
+  <%= image_tag "#{Rails.root}/app/assets/images/missing.jpg" %>
+<%end %>
 <ul>
   <li>Tipo da Propriedade: <%= @property.property_type.name %></li>
   <li>Finalidade da locação: <%= @property.rent_purpose %></li>
