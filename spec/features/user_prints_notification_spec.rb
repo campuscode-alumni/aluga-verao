@@ -8,8 +8,12 @@ feature 'User prints notificaiton' do
     property = Property.create(title: 'casa da praia', city: 'SaoPaulo', state: 'SP', property_type: 'casa de praia', description: 'casa de praia no guaruja',
                               daily_rate: 100, photo: 'casa_no_guaruja.jpg',
                               maximum_guests: 10, minimun_rent: 5, maximum_rent: 20,
-                              rules: 'MUITAS regras e mimimi', rent_purpose: 'carnaval', owner: 'Eliza')
+                              rules: 'MUITAS regras e mimimi', owner: 'Eliza')
 
+    purpose = Purpose.create(name:'ferias')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
+    
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
     proposal = Proposal.create(total_guests: 5, name: 'Eliza', email: 'eliza@rails.com', cpf: '123456789', phone: '67834-1234',

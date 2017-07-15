@@ -4,8 +4,13 @@ feature 'User view properties ' do
 
   scenario ' successfully ' do
     # criar as paradas
+    purpose = Purpose.create(name:'ferias')
+
     property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo', daily_rate: 90.0, photo: 'sitio.jpg',
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
+
     # simulate parada
     visit root_path
 
@@ -15,10 +20,13 @@ feature 'User view properties ' do
 
   scenario 'and view details of properties' do
     user = User.create(email: 'eliza@rails.com', password: 'test123')
+    purpose = Purpose.create(name:'ferias')
 
     property = Property.create( title: 'Apartamento muito louco', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo',
                                 daily_rate: 90.0, photo: 'sitio.jpg',
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
 
     visit root_path
 
@@ -43,10 +51,12 @@ feature 'User view properties ' do
 
   scenario 'and expect price up to date' do
     user = User.create(email: 'eliza@rails.com', password: 'test123')
+    purpose = Purpose.create(name:'ferias')
 
     property = Property.create( title: 'Apartamento muito louco', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo',
                                 daily_rate: 90.0, photo: 'sitio.jpg',
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
+    PropertyPurpose.create(property: property , purpose: purpose )
 
    daily_price_range = PriceRange.create(start_date: Date.today, end_date: Date.today + 30, daily_rate: 150, property_id: property.id)
 

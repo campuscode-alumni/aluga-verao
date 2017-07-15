@@ -12,7 +12,7 @@ scenario 'successfully' do
                                               maximum_guests: 5, minimun_rent: 2, maximum_rent: 10,
                                               rules: 'varias regras mimimi', owner: 'vo Carlos')
 
-    PropertyPurpose.create(property: property , purpose: purpose )                    
+    PropertyPurpose.create(property: property , purpose: purpose )
     proposal = Proposal.create(total_guests: 5, name: 'Eliza', email: 'eliza@rails.com', cpf: '123456789', phone: '67834-1234',
                               observation: 'nao pisar na grama', start_date: 10.days.from_now, end_date: 12.days.from_now,
                               total_amount: 900, property: property, accepted: false, user: user)
@@ -36,8 +36,8 @@ scenario 'successfully' do
     property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo',
                                               daily_rate: 90, photo: 'sitio.jpg',
                                               maximum_guests: 5, minimun_rent: 2, maximum_rent: 10,
-                                              rules: 'varias regras mimimi', purpose: purpose, owner: 'vo Carlos')
-
+                                              rules: 'varias regras mimimi',owner: 'vo Carlos')
+    PropertyPurpose.create(property: property , purpose: purpose )
     proposal = Proposal.create(total_guests: 5, name: 'Eliza', email: 'eliza@rails.com', cpf: '123456789', phone: '67834-1234',
                               observation: 'nao pisar na grama', start_date: 10.days.from_now, end_date: 12.days.from_now,
                               total_amount: 900, property: property, accepted: false, user: user)
@@ -59,7 +59,9 @@ scenario 'successfully' do
     property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type: 'sitio', description: 'sitio do meu vo',
                                               daily_rate: 90, photo: 'sitio.jpg',
                                               maximum_guests: 5, minimun_rent: 2, maximum_rent: 20,
-                                              rules: 'varias regras mimimi', purpose: purpose, owner: 'vo Carlos')
+                                              rules: 'varias regras mimimi', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
 
     proposal = Proposal.create(total_guests: 5, name: 'Eliza', email: 'eliza@rails.com', cpf: '123456789', phone: '67834-1234',
                               observation: 'nao pisar na grama', start_date: 5.days.from_now, end_date: 16.days.from_now,
@@ -68,7 +70,9 @@ scenario 'successfully' do
     other_property = Property.create(title: 'casa da praia', city: 'SaoPaulo', state: 'SP', property_type: 'casa de praia', description: 'casa de praia no guaruja',
                                               daily_rate: 100, photo: 'casa_no_guaruja.jpg',
                                               maximum_guests: 10, minimun_rent: 5, maximum_rent: 3,
-                                              rules: 'MUITAS regras e mimimi', purpose: purpose, owner: 'Eliza')
+                                              rules: 'MUITAS regras e mimimi', owner: 'Eliza')
+
+    PropertyPurpose.create(property: other_property , purpose: purpose )
 
     other_proposal = Proposal.create(total_guests: 5, name: 'Eliza', email: 'eliza@rails.com', cpf: '123456789', phone: '67834-1234',
                                               observation: 'nao pisar na grama', start_date: 5.days.from_now, end_date: 16.days.from_now,

@@ -41,8 +41,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :purpose_id, 'Finalidade' %>
-      <%= f.collection_select( :purpose_id, @purpose, :id, :name )  %>
+      <%= f.collection_check_boxes(:purpose_ids, @purposes, :id, :name)%>
     </div>
 
     <div class="form-group">
