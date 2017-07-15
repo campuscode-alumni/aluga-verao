@@ -6,7 +6,7 @@ require 'rails_helper'
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                                 rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
 
       visit root_path
@@ -30,7 +30,7 @@ require 'rails_helper'
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                                 rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
 
       visit root_path
@@ -52,7 +52,7 @@ require 'rails_helper'
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                                 rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
 
     visit root_path
@@ -74,7 +74,7 @@ require 'rails_helper'
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                                 rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
 
       visit root_path
@@ -96,7 +96,7 @@ require 'rails_helper'
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                                 rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
 
       visit root_path

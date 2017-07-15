@@ -31,6 +31,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :photo, 'Foto do imóvel' %>
+    <%= f.file_field :photo, accept: 'image/png,image/gif,image/jpeg' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :minimun_rent, 'Minimo de dias para hospedagem' %>
     <%= f.text_field :minimun_rent, class: 'form-control' %>
   </div>

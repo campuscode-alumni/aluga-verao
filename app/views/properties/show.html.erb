@@ -1,4 +1,7 @@
 <h1><%= @property.title %></h1>
+<h3>Fotos do imóvel</h3>
+<br>
+<%= image_tag @property.photo.url %>
 <ul>
   <li>Tipo da Propriedade: <%= @property.property_type.name %></li>
   <li>Finalidade da locação: <%= @property.rent_purpose %></li>

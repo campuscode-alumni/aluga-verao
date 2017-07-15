@@ -54,7 +54,7 @@ class PropertiesController < ApplicationController
 
   def property_params
     params.require(:property).permit(:title, :city, :state, :description, :maximum_guests, :daily_rate,
-                   :property_type_id, :maximum_rent, :minimun_rent, :rules, :rent_purpose, :owner)
+                   :property_type_id, :maximum_rent, :minimun_rent, :rules, :rent_purpose, :owner, :photo)
   end
 
   def set_collection

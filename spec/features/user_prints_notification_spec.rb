@@ -5,9 +5,9 @@ feature 'User prints notificaiton' do
   scenario 'successfully' do
 
     property_type = PropertyType.create(name: 'sitio')
-    
+
     property = Property.create(title: 'casa da praia', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'casa de praia no guaruja',
-                              daily_rate: 100, photo: 'casa_no_guaruja.jpg',
+                              daily_rate: 100,
                               maximum_guests: 10, minimun_rent: 5, maximum_rent: 20,
                               rules: 'MUITAS regras e mimimi', rent_purpose: 'carnaval', owner: 'Eliza')
 

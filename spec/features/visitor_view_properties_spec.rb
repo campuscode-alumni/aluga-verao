@@ -6,7 +6,7 @@ feature 'User view properties ' do
     # criar as paradas
     property_type = PropertyType.create(name: 'sitio')
 
-    property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo', daily_rate: 90.0, photo: 'sitio.jpg',
+    property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo', daily_rate: 90.0,
                                 maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
     # simulate parada
     visit root_path
@@ -22,7 +22,7 @@ feature 'User view properties ' do
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
     property = Property.create( title: 'Apartamento muito louco', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
-                                daily_rate: 90.0, photo: 'sitio.jpg',
+                                daily_rate: 90.0,
                                 maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
 
     visit root_path
@@ -52,7 +52,7 @@ feature 'User view properties ' do
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
     property = Property.create( title: 'Apartamento muito louco', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
-                                daily_rate: 90.0, photo: 'sitio.jpg',
+                                daily_rate: 90.0,
                                 maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
 
    daily_price_range = PriceRange.create(start_date: Date.today, end_date: Date.today + 30, daily_rate: 150, property_id: property.id)

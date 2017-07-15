@@ -5,7 +5,7 @@ feature 'Owner edit daily price range' do
     property_type = PropertyType.create(name: 'sitio')
     property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
 
     daily_price_range = PriceRange.create(start_date: Date.today, end_date: Date.today + 30, daily_rate: 100, property_id: property.id)
@@ -26,7 +26,7 @@ feature 'Owner edit daily price range' do
     property_type = PropertyType.create(name: 'sitio')
     property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                               description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, photo: 'apartamento.png', maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
+                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
                               rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
 
     daily_price_range = PriceRange.create(start_date: Date.today, end_date: Date.today + 30, daily_rate: 100, property_id: property.id)

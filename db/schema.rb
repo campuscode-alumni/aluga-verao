@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713235549) do
+ActiveRecord::Schema.define(version: 20170714231801) do
 
   create_table "price_ranges", force: :cascade do |t|
     t.integer "property_id"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20170713235549) do
     t.string "city"
     t.string "state"
     t.text "description"
-    t.string "photo"
     t.integer "minimun_rent"
     t.integer "maximum_rent"
     t.text "rules"
@@ -38,6 +37,10 @@ ActiveRecord::Schema.define(version: 20170713235549) do
     t.decimal "daily_rate"
     t.integer "maximum_guests"
     t.integer "property_type_id"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
   end
 
