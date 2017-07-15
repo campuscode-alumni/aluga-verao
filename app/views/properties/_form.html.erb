@@ -16,8 +16,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :property_type, 'Tipo' %>
-      <%= f.text_field :property_type, class: 'form-control'%>
+      <%= f.label :property_type_id, 'Tipo do imovel' %>
+      <%= f.collection_select(:property_type_id, @property_types, :id, :name, class: 'form-control')%>
     </div>
 
     <div class="form-group">

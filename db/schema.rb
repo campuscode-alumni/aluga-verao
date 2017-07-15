@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(version: 20170714012039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner"
-    t.string "property_type"
     t.string "title"
     t.decimal "daily_rate"
     t.integer "maximum_guests"
+    t.integer "property_type_id"
     t.integer "purpose_id"
+    t.index ["property_type_id"], name: "index_properties_on_property_type_id"
     t.index ["purpose_id"], name: "index_properties_on_purpose_id"
   end
 
@@ -50,13 +51,10 @@ ActiveRecord::Schema.define(version: 20170714012039) do
     t.index ["purpose_id"], name: "index_property_purposes_on_purpose_id"
   end
 
-  create_table "propertypurposes", force: :cascade do |t|
-    t.integer "property_id"
-    t.integer "purpose_id"
+  create_table "property_types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["property_id"], name: "index_propertypurposes_on_property_id"
-    t.index ["purpose_id"], name: "index_propertypurposes_on_purpose_id"
   end
 
   create_table "proposals", force: :cascade do |t|

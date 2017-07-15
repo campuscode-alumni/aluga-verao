@@ -1,0 +1,19 @@
+<% unless @property_type.errors.full_messages.empty? %>
+  <% @property_type.errors.full_messages.each do |message| %>
+    <label><%= message %></label>
+  <% end %>
+<% end %>
+
+<div class='row'>
+  <h1>Cadastrar Tipo de Imovel</h1>
+  <div class='col-md-6'>
+    <%= form_for @property_type do |f| %>
+      <div class="form-group">
+        <%= f.label :name, 'Tipo de imovel' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <%= f.submit 'Enviar', class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

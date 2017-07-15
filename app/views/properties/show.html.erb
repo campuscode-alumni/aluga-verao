@@ -1,10 +1,12 @@
 <h1><%= @property.title %></h1>
 <ul>
-  <li>Tipo da Propriedade: <%= @property.property_type %></li>
+
+  <li>Tipo da Propriedade: <%= @property.property_type.name %></li>
   <li>Finalidade da locação: <% @property.purposes.each do |purpose|%>
     <%= purpose.name %>
     <% end %>
   </li>
+
   <li>Cidade: <%= @property.city %></li>
   <li>Estado: <%= @property.state %></li>
   <li>Regras para hospedagem: <%= @property.rules %></li>
