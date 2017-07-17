@@ -7,6 +7,7 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    @purposes = Purpose.all
   end
 
   def create
@@ -16,6 +17,7 @@ class PropertiesController < ApplicationController
     else
       flash[:error] = 'Este imovel nao pode ser cadastrado sem um proprietario'
       @property = Property.new
+      @purposes = Purpose.all
       render :new
     end
   end
@@ -38,6 +40,7 @@ class PropertiesController < ApplicationController
 
   def edit
     @property = Property.find(params[:id])
+    @purposes = Purpose.all
   end
 
   def update
@@ -46,19 +49,20 @@ class PropertiesController < ApplicationController
     if @property.valid?
       redirect_to @property
     else
+      @purposes = Purpose.all
       render :edit
     end
   end
 
   private
 
-  def property_params
-    params.require(:property).permit(:title, :city, :state, :description, :maximum_guests, :daily_rate,
-                   :property_type_id, :maximum_rent, :minimun_rent, :rules, :rent_purpose, :owner, :photo)
-  end
-
   def set_collection
     @property_types = PropertyType.all
+  end
+
+  def property_params
+    params.require(:property).permit(:title, :city, :state, :description, :maximum_guests, :daily_rate,
+                  :property_type_id, :maximum_rent, :minimun_rent, :rules, :owner, :photo, purpose_ids:[])
   end
 
 end

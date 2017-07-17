@@ -2,14 +2,21 @@ require 'rails_helper'
 
   feature 'Owner create price_range by period' do
     scenario 'successfully' do
+
+      purpose = Purpose.create(name:'ferias')
+
       property_type = PropertyType.create(name: 'sitio')
+
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
                                 daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
+                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+
+      PropertyPurpose.create(property: property , purpose: purpose )
 
       visit root_path
+
       click_on 'Apartamento Top'
       click_on 'Cadastrar valor por periodo'
 
@@ -26,12 +33,18 @@ require 'rails_helper'
     end
 
     scenario 'and missing some attribute' do
+
+      purpose = Purpose.create(name:'ferias')
+
+
       property_type = PropertyType.create(name: 'sitio')
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
                                 daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
+                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+
+      PropertyPurpose.create(property: property , purpose: purpose )
 
       visit root_path
       click_on 'Apartamento Top'
@@ -48,12 +61,17 @@ require 'rails_helper'
 
     scenario 'and start_date < today' do
 
+      purpose = Purpose.create(name:'ferias')
+
+
       property_type = PropertyType.create(name: 'sitio')
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
                                 daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
+                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+
+   PropertyPurpose.create(property: property , purpose: purpose )
 
     visit root_path
     click_on 'Apartamento Top'
@@ -70,12 +88,18 @@ require 'rails_helper'
 
     scenario 'and start_date < today' do
 
+      purpose = Purpose.create(name:'ferias')
+
+
+
       property_type = PropertyType.create(name: 'sitio')
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
                                 daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
+                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
 
       visit root_path
       click_on 'Apartamento Top'
@@ -92,12 +116,17 @@ require 'rails_helper'
 
     scenario 'and period strikes another period' do
 
+      purpose = Purpose.create(name:'ferias')
+
+
       property_type = PropertyType.create(name: 'sitio')
 
       property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
                                 description: 'Apartamento grande na região do Paraisópolis',
                                 daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', rent_purpose: 'Pancadão', owner: 'vo Carlos')
+                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+
+      PropertyPurpose.create(property: property , purpose: purpose )
 
       visit root_path
       click_on 'Apartamento Top'

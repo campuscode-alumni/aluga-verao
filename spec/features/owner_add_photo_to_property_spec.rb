@@ -6,6 +6,8 @@ feature 'Owner add photo to property' do
 
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
+    purpose = Purpose.create(name:'ferias')
+
     #simula o cadastro
     visit root_path
     click_on 'Cadastrar Imovel'
@@ -19,7 +21,7 @@ feature 'Owner add photo to property' do
     fill_in 'Maximo de dias para hospedagem', with: '3'
     fill_in 'Minimo de dias para hospedagem', with: '2'
     fill_in 'Regras', with: 'varias regras mimimi'
-    fill_in 'Finalidade', with: 'ferias'
+    check purpose.name
     fill_in 'Dono', with: 'vo Carlos'
     fill_in 'Descricao', with: 'sitio do meu vo muito bac'
     attach_file('Foto do imóvel', "#{Rails.root}/spec/support/images/sitio.jpg")
@@ -47,6 +49,8 @@ feature 'Owner add photo to property' do
 
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
+    purpose = Purpose.create(name:'ferias')
+
     #simula o cadastro
     visit root_path
     click_on 'Cadastrar Imovel'
@@ -60,7 +64,7 @@ feature 'Owner add photo to property' do
     fill_in 'Maximo de dias para hospedagem', with: '3'
     fill_in 'Minimo de dias para hospedagem', with: '2'
     fill_in 'Regras', with: 'varias regras mimimi'
-    fill_in 'Finalidade', with: 'ferias'
+    check purpose.name
     fill_in 'Dono', with: 'vo Carlos'
     fill_in 'Descricao', with: 'sitio do meu vo muito bac'
 

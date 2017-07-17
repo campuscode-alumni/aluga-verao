@@ -6,7 +6,7 @@
   <% else %>
     <% @proposals.each do |proposal| %>
     <div class="col-md-4">
-      <h3><%= link_to proposal.property.description, proposal_path(proposal) %></h3>
+      <h3><%= link_to proposal.property.title, proposal_path(proposal) %></h3>
       <ul>
         <li>Data Inicial: <%= I18n.l(proposal.start_date)%></li>
         <li>Data Final: <%= I18n.l(proposal.end_date) %></li>

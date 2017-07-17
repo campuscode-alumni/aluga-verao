@@ -6,8 +6,13 @@ feature 'User view properties ' do
     # criar as paradas
     property_type = PropertyType.create(name: 'sitio')
 
-    property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo', daily_rate: 90.0,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+    purpose = Purpose.create(name:'ferias')
+
+    property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo', daily_rate: 90.0, 
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
+
     # simulate parada
     visit root_path
 
@@ -20,10 +25,13 @@ feature 'User view properties ' do
     property_type = PropertyType.create(name: 'sitio')
 
     user = User.create(email: 'eliza@rails.com', password: 'test123')
+    purpose = Purpose.create(name:'ferias')
 
     property = Property.create( title: 'Apartamento muito louco', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
                                 daily_rate: 90.0,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
 
     visit root_path
 
@@ -50,10 +58,14 @@ feature 'User view properties ' do
     property_type = PropertyType.create(name: 'sitio')
 
     user = User.create(email: 'eliza@rails.com', password: 'test123')
+    purpose = Purpose.create(name:'ferias')
 
     property = Property.create( title: 'Apartamento muito louco', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
                                 daily_rate: 90.0,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
+
 
    daily_price_range = PriceRange.create(start_date: Date.today, end_date: Date.today + 30, daily_rate: 150, property_id: property.id)
 

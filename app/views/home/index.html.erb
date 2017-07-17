@@ -16,7 +16,7 @@
       <ul>
         <li>Cidade: <%= property.city %></li>
         <li>Estado: <%= property.state %></li>
-        <li>Finalidade: <%= property.rent_purpose %></li>
+        <li>Finalidade: <%= property.property_purposes.name.first %></li>
         <li>Valor da diaria: <%= number_to_currency(property.daily_rate) %></li>
       </ul>
   </div>

@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20170714231801) do
     t.integer "minimun_rent"
     t.integer "maximum_rent"
     t.text "rules"
-    t.string "rent_purpose"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner"
@@ -37,11 +36,22 @@ ActiveRecord::Schema.define(version: 20170714231801) do
     t.decimal "daily_rate"
     t.integer "maximum_guests"
     t.integer "property_type_id"
+    t.integer "purpose_id"
     t.string "photo_file_name"
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
+    t.index ["purpose_id"], name: "index_properties_on_purpose_id"
+  end
+
+  create_table "property_purposes", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "purpose_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_purposes_on_property_id"
+    t.index ["purpose_id"], name: "index_property_purposes_on_purpose_id"
   end
 
   create_table "property_types", force: :cascade do |t|
@@ -67,6 +77,12 @@ ActiveRecord::Schema.define(version: 20170714231801) do
     t.integer "user_id"
     t.index ["property_id"], name: "index_proposals_on_property_id"
     t.index ["user_id"], name: "index_proposals_on_user_id"
+  end
+
+  create_table "purposes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

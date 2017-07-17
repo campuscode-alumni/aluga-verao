@@ -5,62 +5,78 @@ feature 'Owner create property' do
   scenario 'successfully' do
     property_type = PropertyType.create(name: 'sitio')
 
-    user = User.create(email: 'eliza@rails.com', password: 'test123')
+    #criar um imovel
 
+    purpose = Purpose.create(name:'ferias')
+
+    property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type: property_type, description: 'sitio do meu vo', daily_rate: 90.0,
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
     #simula o cadastro
     visit root_path
+
     click_on 'Cadastrar Imovel'
+
     #preencher o form
-    fill_in 'Titulo', with: 'sitio do meu vo'
-    fill_in 'Cidade', with: 'SaoPaulo'
-    fill_in 'Estado', with: 'SP'
+
+    fill_in 'Titulo', with: property.title
+    fill_in 'Cidade', with: property.city
+    fill_in 'Estado', with: property.state
     select 'sitio', from: 'Tipo do imovel'
-    fill_in 'Preco', with: '90'
-    fill_in 'Capacidade', with: '5'
-    fill_in 'Maximo de dias para hospedagem', with: '3'
-    fill_in 'Minimo de dias para hospedagem', with: '2'
-    fill_in 'Regras', with: 'varias regras mimimi'
-    fill_in 'Finalidade', with: 'ferias'
-    fill_in 'Dono', with: 'vo Carlos'
-    fill_in 'Descricao', with: 'sitio do meu vo muito bac'
+    fill_in 'Preco', with: property.daily_rate
+    fill_in 'Capacidade', with: property.maximum_guests
+    fill_in 'Maximo de dias para hospedagem', with: property.maximum_rent
+    fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
+    fill_in 'Regras', with: property.rules
+    check purpose.name
+    fill_in 'Dono', with: property.owner
+    fill_in 'Descricao', with: property.description
 
     click_on 'Enviar'
 
     #excepct stranger things
-    expect(page).to have_css('h1', text: 'sitio do meu vo')
-    expect(page).to have_css('li', text: 'SP')
-    expect(page).to have_css('li', text: 'SaoPaulo')
-    expect(page).to have_css('li', text: 'sitio')
+    expect(page).to have_css('h1', text: property.title)
+    expect(page).to have_css('li', text: property.city)
+    expect(page).to have_css('li', text: property.state)
+    expect(page).to have_css('li', text: property.property_type.name)
     expect(page).to have_css('li', text: 'R$ 90,00')
-    expect(page).to have_css('li', text: '5')
-    expect(page).to have_css('li', text: '3')
-    expect(page).to have_css('li', text: '2')
-    expect(page).to have_css('li', text: 'varias regras mimimi')
-    expect(page).to have_css('li', text: 'ferias')
-    expect(page).to have_css('li', text: 'vo Carlos')
-    expect(page).to have_css('p', text: 'sitio do meu vo muito bac')
+    expect(page).to have_css('li', text: property.maximum_guests)
+    expect(page).to have_css('li', text: property.maximum_rent)
+    expect(page).to have_css('li', text: property.minimun_rent)
+    expect(page).to have_css('li', text: property.rules)
+    expect(page).to have_css('li', text: purpose.name)
+    expect(page).to have_css('li', text: property.owner)
+    expect(page).to have_css('p', text: property.description)
+
 
   end
 
   scenario 'and must fill owner' do
+
+    purpose = Purpose.create(name:'ferias')
+
     property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create( city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo', daily_rate: 90.0,
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi')
+
+    PropertyPurpose.create(property: property , purpose: purpose)
 
     visit root_path
 
     click_on 'Cadastrar Imovel'
 
-    fill_in 'Titulo', with: 'sitio do meu vo'
-    fill_in 'Cidade', with: 'SaoPaulo'
-    fill_in 'Estado', with: 'SP'
+    fill_in 'Descricao', with: property.description
+    fill_in 'Cidade', with: property.city
+    fill_in 'Estado', with: property.state
     select 'sitio', from: 'Tipo do imovel'
-    fill_in 'Preco', with: '90'
-    fill_in 'Capacidade', with: '5'
-    fill_in 'Maximo de dias para hospedagem', with: '3'
-    fill_in 'Minimo de dias para hospedagem', with: '2'
-    fill_in 'Regras', with: 'varias regras mimimi'
-    fill_in 'Finalidade', with: 'ferias'
-    fill_in 'Dono', with: ''
-    fill_in 'Descricao', with: 'sitio do meu vo muito bac'
+    fill_in 'Preco', with: property.daily_rate
+    fill_in 'Capacidade', with: property.maximum_guests
+    fill_in 'Maximo de dias para hospedagem', with: property.maximum_rent
+    fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
+    fill_in 'Regras', with: property.rules
+    check purpose.name
 
     click_on 'Enviar'
 
@@ -69,12 +85,15 @@ feature 'Owner create property' do
   end
 
   scenario 'and edit a property' do
+    purpose = Purpose.create(name:'ferias')
+
     property_type = PropertyType.create(name: 'sitio')
 
-    property = Property.create( title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo muito bac',
-                                daily_rate: 90,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos')
+    property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo muito bac',
+                              daily_rate: 90, maximum_guests: 5, minimun_rent: 2, maximum_rent: 3,
+                              rules: 'varias regras mimimi', owner: 'vo Carlos')
 
+    PropertyPurpose.create(property: property , purpose: purpose )
 
     visit root_path
     click_on 'sitio do meu vo'
@@ -90,7 +109,7 @@ feature 'Owner create property' do
     fill_in 'Maximo de dias para hospedagem', with: '9'
     fill_in 'Minimo de dias para hospedagem', with: '3'
     fill_in 'Regras', with: 'nao sujar a casa'
-    fill_in 'Finalidade', with: 'ferias'
+    check purpose.name
 
     click_on 'Enviar'
 
@@ -100,14 +119,18 @@ feature 'Owner create property' do
   end
 
   scenario 'and edit a property editing photo' do
+    purpose = Purpose.create(name:'ferias')
+
     property_type = PropertyType.create(name: 'sitio')
 
     photo = File.new("#{Rails.root}/spec/support/images/sitio.jpg")
 
     property = Property.create( title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo muito bac',
                                 daily_rate: 90,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', rent_purpose: 'ferias', owner: 'vo Carlos',
+                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos',
                                 photo: photo)
+
+    PropertyPurpose.create(property: property , purpose: purpose )
 
     visit root_path
     click_on 'sitio do meu vo'
@@ -123,7 +146,7 @@ feature 'Owner create property' do
     fill_in 'Maximo de dias para hospedagem', with: '9'
     fill_in 'Minimo de dias para hospedagem', with: '3'
     fill_in 'Regras', with: 'nao sujar a casa'
-    fill_in 'Finalidade', with: 'ferias'
+    check purpose.name
     attach_file('Foto do imóvel', "#{Rails.root}/spec/support/images/sitio2.jpg")
 
     click_on 'Enviar'
