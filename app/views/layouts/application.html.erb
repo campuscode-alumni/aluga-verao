@@ -22,14 +22,13 @@
               <label class="navbar-text">Bem vindo ao Aluga Verão</label>
                 <%= render 'shared/filter_form' %>
               <% if user_signed_in? %>
-                <%= link_to 'Minhas propostas', my_proposals_path, class: 'btn btn-primary', style: 'margin-top: 7px' %>
-                <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-primary', style: 'margin-top: 7px'  %>
+                <%= link_to 'Minhas locações', my_rents_path, class: 'btn btn-primary', style: 'margin-top: 7px;' %>
+                <%= link_to 'Minhas propostas', my_proposals_path, class: 'btn btn-primary', style: 'margin-top: 7px;' %>
+                <%= link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'btn btn-primary', style: 'margin-top: 7px;'  %>
               <% else %>
-                <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary', style: 'margin-top: 7px' %>
-                <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-primary', style: 'margin-top: 7px' %>
+                <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary', style: 'margin-top: 7px;' %>
+                <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-primary', style: 'margin-top: 7px;' %>
               <% end %>
-
-
             </div>
           </div>
         </nav>
@@ -37,20 +36,7 @@
 
     <main>
       <div class="container">
-        <% if flash[:error] %>
-          <div class="row">
-            <div class="alert alert-danger">
-              <label><%= flash[:error] %></label>
-            </div>
-          </div>
-        <% end %>
-        <div class="row">
-          <p class="notice"><%= notice %></p>
-        </div>
-
-        <div class="row">
-          <p class="alert"><%= alert %></p>
-        </div>
+        <%= render 'shared/notifications' %>
         <%= yield %>
       </div>
     </main>

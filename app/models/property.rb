@@ -5,6 +5,7 @@ class Property < ApplicationRecord
   has_many :property_purposes
   has_many :purposes , through: :property_purposes
   belongs_to :property_type
+  has_many :property_reviews
   has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 

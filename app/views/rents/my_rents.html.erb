@@ -1,0 +1,6 @@
+<% @rents.each do |rent| %>
+  <ul>
+    <li><%= rent.property.title %></li>
+    <li><%= link_to 'Avaliar', new_property_review_path(rent.property) %></li>
+  </ul>
+<% end %>

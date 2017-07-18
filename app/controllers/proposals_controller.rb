@@ -22,7 +22,7 @@ class ProposalsController < ApplicationController
     end
 
     @proposal = @property.proposals.new(proposal_params)
-     @proposal.user = current_user
+    @proposal.user = current_user
     if @property.is_available?( @proposal.start_date, @proposal.end_date )
       if @proposal.save
         redirect_to @proposal
@@ -36,34 +36,34 @@ class ProposalsController < ApplicationController
     end
   end
 
- def accept_proposal
+  def accept_proposal
+    @proposal = Proposal.find(params[:proposal_id])
+    @proposal.accepted = true
 
-   @proposal = Proposal.find(params[:proposal_id])
-   @proposal.accepted = true
+    @proposal.save
+    flash[:notice] = 'Proposta aceita..'
 
-  @proposal.save
-   flash[:error] = 'Proposta aceita..'
+    rent = Rent.create( proposal: @proposal )
+    redirect_to rent_url(rent)
+  end
 
-   redirect_to proposals_url
- end
+  def my_proposals
+    @proposals = Proposal.where(user: current_user)
+  end
 
+  def print_cupom
+    @proposal = Proposal.find(params[:proposal_id])
+  end
 
-def my_proposals
-  @proposals = Proposal.where(user: current_user)
-end
+  private
 
-def print_cupom
-  @proposal = Proposal.find(params[:proposal_id])
-end
+  def find_property
+    @property = Property.find(params[:property_id])
+  end
 
-   private
+  def proposal_params
+    parameters = params.require(:proposal).permit(:start_date, :end_date, :total_guests, :name,
+                 :email, :cpf, :phone, :observation)
+  end
 
-   def find_property
-     @property = Property.find(params[:property_id])
-   end
-
-   def proposal_params
-     parameters = params.require(:proposal).permit(:start_date, :end_date, :total_guests, :name,
-                   :email, :cpf, :phone, :observation)
-   end
  end

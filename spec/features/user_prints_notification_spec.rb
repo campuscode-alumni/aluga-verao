@@ -14,7 +14,7 @@ feature 'User prints notificaiton' do
     purpose = Purpose.create(name:'ferias')
 
     PropertyPurpose.create(property: property , purpose: purpose )
-    
+
     user = User.create(email: 'eliza@rails.com', password: 'test123')
 
     proposal = Proposal.create(total_guests: 5, name: 'Eliza', email: 'eliza@rails.com', cpf: '123456789', phone: '67834-1234',
@@ -28,7 +28,6 @@ feature 'User prints notificaiton' do
     fill_in 'Email', with: user.email
     fill_in 'Senha', with: user.password
     click_on 'Entrar'
-
 
     visit root_path
     click_on 'Minhas propostas'

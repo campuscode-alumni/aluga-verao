@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714231801) do
+ActiveRecord::Schema.define(version: 20170718005714) do
 
   create_table "price_ranges", force: :cascade do |t|
     t.integer "property_id"
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(version: 20170714231801) do
     t.decimal "daily_rate"
     t.integer "maximum_guests"
     t.integer "property_type_id"
-    t.integer "purpose_id"
     t.string "photo_file_name"
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer "purpose_id"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
     t.index ["purpose_id"], name: "index_properties_on_purpose_id"
   end
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 20170714231801) do
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_property_purposes_on_property_id"
     t.index ["purpose_id"], name: "index_property_purposes_on_purpose_id"
+  end
+
+  create_table "property_reviews", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "user_id"
+    t.text "comment"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_reviews_on_property_id"
+    t.index ["user_id"], name: "index_property_reviews_on_user_id"
   end
 
   create_table "property_types", force: :cascade do |t|
@@ -83,6 +94,13 @@ ActiveRecord::Schema.define(version: 20170714231801) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rents", force: :cascade do |t|
+    t.integer "proposal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposal_id"], name: "index_rents_on_proposal_id"
   end
 
   create_table "users", force: :cascade do |t|

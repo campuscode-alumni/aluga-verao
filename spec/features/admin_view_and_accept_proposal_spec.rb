@@ -100,7 +100,35 @@ scenario 'successfully' do
     fill_in 'Email', with: proposal.email
     click_on 'Enviar'
 
-
     expect(page).to have_content('casa indisponivel')
   end
+
+  scenario 'and proposal generate rent' do
+    user = User.create(email: 'eliza@rails.com', password: 'test123')
+    purpose = Purpose.create(name:'ferias')
+
+    property_type = PropertyType.create(name: 'sitio')
+
+    property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo',
+                                              daily_rate: 90,
+                                              maximum_guests: 5, minimun_rent: 2, maximum_rent: 10,
+                                              rules: 'varias regras mimimi',owner: 'vo Carlos')
+
+    PropertyPurpose.create(property: property , purpose: purpose )
+
+    proposal = Proposal.create(total_guests: 5, name: 'Eliza', email: 'eliza@rails.com', cpf: '123456789', phone: '67834-1234',
+                              observation: 'nao pisar na grama', start_date: 10.days.from_now, end_date: 12.days.from_now,
+                              total_amount: 900, property: property, accepted: false, user: user)
+
+    visit root_path
+    click_on 'Ver propostas'
+    click_on 'sitio do meu vo'
+    click_on 'Aceitar'
+
+    expect(page).to have_content('Proposta aceita..')
+    expect(page).to have_css('li', text: proposal.name)
+    expect(page).to have_css('li', text: "Data de aceite: #{I18n.l(Time.zone.now.to_date)}")
+    expect(page).to have_css('li', text: property.title)
+  end
+
 end

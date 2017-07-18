@@ -1,0 +1,7 @@
+<h1> Alugueis </h1>
+
+<ul>
+  <li><%= @rent.proposal.name %></li>
+  <li><%= "Data de aceite: #{I18n.l(@rent.created_at.to_date)}" %></li>
+  <li><%= @rent.proposal.property.title %></li>
+</ul>

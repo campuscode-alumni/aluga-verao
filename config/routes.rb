@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :proposals, only: [:new, :create]
     resources :price_ranges, only: [:new, :create, :index]
     get 'filtered', on: :collection
+    resources :reviews, only: [:new, :create, :show]
   end
 
   resources :proposals, only:[:index, :show] do
@@ -19,4 +20,7 @@ Rails.application.routes.draw do
   resources :price_ranges, only: [:show, :edit, :update]
 
   resources :property_types, only: [:show, :new, :create]
+
+  resources :rents, only: [:show]
+  get 'my_rents', to: 'rents#my_rents'
 end

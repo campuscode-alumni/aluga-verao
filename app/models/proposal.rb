@@ -3,7 +3,8 @@ class Proposal < ApplicationRecord
             :phone, :observation, presence: { message: 'Houve um erro ao tentar enviar a proposta' }
   belongs_to :property
   belongs_to :user
-
+  has_one :rent
+  
   after_validation :calculate_total_amount
 
   private
@@ -54,4 +55,6 @@ class Proposal < ApplicationRecord
       end
     end
   end
+
+
 end
