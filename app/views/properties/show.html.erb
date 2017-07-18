@@ -17,7 +17,7 @@
   <li>Cidade: <%= @property.city %></li>
   <li>Estado: <%= @property.state %></li>
   <li>Regras para hospedagem: <%= @property.rules %></li>
-  <li>Dono: <%= @property.owner %></li>
+  <li>Dono: <%= @property.owner.name %></li>
   <li>Valor da diária: <%= number_to_currency(@property.daily_rate) %></li>
   <li>Quantidade máxima de hospedes: <%= @property.maximum_guests %></li>
   <li>Número mínimo de dias: <%= @property.minimun_rent %></li>

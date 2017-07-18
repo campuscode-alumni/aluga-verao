@@ -5,21 +5,18 @@ feature 'Owner create property' do
   scenario 'successfully' do
     property_type = PropertyType.create(name: 'sitio')
 
-    #criar um imovel
+    owner = create(:user)
+    login_as(owner)
 
     purpose = Purpose.create(name:'ferias')
+    property = build(:property, property_type: property_type, owner_id: owner.id)
 
-    property = Property.create(title: 'AP Top', city: 'SaoPaulo', state: 'SP', property_type: property_type, description: 'sitio do meu vo', daily_rate: 90.0,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos')
-
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
     #simula o cadastro
     visit root_path
-
     click_on 'Cadastrar Imovel'
 
     #preencher o form
-
     fill_in 'Titulo', with: property.title
     fill_in 'Cidade', with: property.city
     fill_in 'Estado', with: property.state
@@ -30,12 +27,10 @@ feature 'Owner create property' do
     fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
     fill_in 'Regras', with: property.rules
     check purpose.name
-    fill_in 'Dono', with: property.owner
     fill_in 'Descricao', with: property.description
 
     click_on 'Enviar'
 
-    #excepct stranger things
     expect(page).to have_css('h1', text: property.title)
     expect(page).to have_css('li', text: property.city)
     expect(page).to have_css('li', text: property.state)
@@ -46,57 +41,25 @@ feature 'Owner create property' do
     expect(page).to have_css('li', text: property.minimun_rent)
     expect(page).to have_css('li', text: property.rules)
     expect(page).to have_css('li', text: purpose.name)
-    expect(page).to have_css('li', text: property.owner)
+    expect(page).to have_css('li', text: owner.name)
     expect(page).to have_css('p', text: property.description)
 
 
   end
 
-  scenario 'and must fill owner' do
-
-    purpose = Purpose.create(name:'ferias')
-
-    property_type = PropertyType.create(name: 'sitio')
-
-    property = Property.create( city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo', daily_rate: 90.0,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi')
-
-    PropertyPurpose.create(property: property , purpose: purpose)
-
-    visit root_path
-
-    click_on 'Cadastrar Imovel'
-
-    fill_in 'Descricao', with: property.description
-    fill_in 'Cidade', with: property.city
-    fill_in 'Estado', with: property.state
-    select 'sitio', from: 'Tipo do imovel'
-    fill_in 'Preco', with: property.daily_rate
-    fill_in 'Capacidade', with: property.maximum_guests
-    fill_in 'Maximo de dias para hospedagem', with: property.maximum_rent
-    fill_in 'Minimo de dias para hospedagem', with: property.minimun_rent
-    fill_in 'Regras', with: property.rules
-    check purpose.name
-
-    click_on 'Enviar'
-
-    expect(page).to have_content('Este imovel nao pode ser cadastrado sem um proprietario')
-
-  end
-
   scenario 'and edit a property' do
-    purpose = Purpose.create(name:'ferias')
+    owner = create(:user)
+    login_as(owner)
 
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
-    property = Property.create(title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo muito bac',
-                              daily_rate: 90, maximum_guests: 5, minimun_rent: 2, maximum_rent: 3,
-                              rules: 'varias regras mimimi', owner: 'vo Carlos')
+    property = create(:property, property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-    click_on 'sitio do meu vo'
+    click_on 'AP Top'
     click_on 'Editar'
 
     fill_in 'Titulo', with: 'Casa de campo'
@@ -119,21 +82,20 @@ feature 'Owner create property' do
   end
 
   scenario 'and edit a property editing photo' do
-    purpose = Purpose.create(name:'ferias')
+    owner = create(:user)
+    login_as(owner)
 
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
     photo = File.new("#{Rails.root}/spec/support/images/sitio.jpg")
 
-    property = Property.create( title: 'sitio do meu vo', city: 'SaoPaulo', state: 'SP', property_type_id: property_type.id, description: 'sitio do meu vo muito bac',
-                                daily_rate: 90,
-                                maximum_guests: 5, minimun_rent: 2, maximum_rent: 3, rules: 'varias regras mimimi', owner: 'vo Carlos',
-                                photo: photo)
+    property = create(:property, property_type: property_type, owner_id: owner.id, photo: photo)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-    click_on 'sitio do meu vo'
+    click_on 'AP Top'
     click_on 'Editar'
 
     fill_in 'Titulo', with: 'Casa de campo'

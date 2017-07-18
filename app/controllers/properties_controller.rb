@@ -12,6 +12,7 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
+    @property.owner = current_user
     if @property.save
       redirect_to @property
     else
@@ -53,7 +54,7 @@ class PropertiesController < ApplicationController
       render :edit
     end
   end
-  
+
   private
 
   def set_collection

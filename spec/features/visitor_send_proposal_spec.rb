@@ -3,29 +3,18 @@ require 'rails_helper'
 feature 'visitor_send_proposal' do
   scenario 'successfully' do
     #cria os dados necessarios
+    owner = create(:user)
+    login_as(owner)
+
     property_type = PropertyType.create(name: 'sitio')
-
-    user = User.create(email: 'eliza@rails.com', password: 'test123')
-
     purpose = Purpose.create(name:'ferias')
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                              description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+    property = create(:property, city: 'Sao Paulo', daily_rate: 50, property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-
-    click_on 'Login'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-    click_on 'Entrar'
-
-
-    visit root_path
-    click_on 'Apartamento Top'
+    click_on property.title
     click_on 'Enviar Proposta'
 
     fill_in 'Data Inicial', with: '05/09/2017'
@@ -46,20 +35,18 @@ feature 'visitor_send_proposal' do
 
   scenario 'and missing some attribute' do
     #criando os dados necessarios
-
-    purpose = Purpose.create(name:'ferias')
+    owner = create(:user)
+    login_as(owner)
 
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                              description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+    property = create(:property, city: 'Sao Paulo', property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-    click_on 'Apartamento Top'
+    click_on property.title
     click_on 'Enviar Proposta'
 
     fill_in 'Data Inicial', with: ''
@@ -75,20 +62,18 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and start date < today' do
-
-    purpose = Purpose.create(name:'ferias')
+    owner = create(:user)
+    login_as(owner)
 
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                              description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+    property = create(:property, city: 'Sao Paulo', property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-    click_on 'Apartamento Top'
+    click_on property.title
     click_on 'Enviar Proposta'
 
     fill_in 'Data Inicial', with: '2017-07-10'
@@ -105,20 +90,18 @@ feature 'visitor_send_proposal' do
 
   end
   scenario 'and end date < start date' do
-
-    purpose = Purpose.create(name:'ferias')
+    owner = create(:user)
+    login_as(owner)
 
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                              description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+    property = create(:property, city: 'Sao Paulo', property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-    click_on 'Apartamento Top'
+    click_on property.title
     click_on 'Enviar Proposta'
 
     fill_in 'Data Inicial', with: Date.today + 1
@@ -135,20 +118,18 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and total days < minimun rent' do
-
-    purpose = Purpose.create(name:'ferias')
+    owner = create(:user)
+    login_as(owner)
 
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                              description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+    property = create(:property, city: 'Sao Paulo', minimun_rent: 1, maximum_rent: 5, property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-    click_on 'Apartamento Top'
+    click_on property.title
     click_on 'Enviar Proposta'
 
     fill_in 'Data Inicial', with: '2017-09-11'
@@ -165,20 +146,18 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and total days > maximumn rent' do
-
-    purpose = Purpose.create(name:'ferias')
+    owner = create(:user)
+    login_as(owner)
 
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                              description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão',owner: 'vo Carlos')
+    property = create(:property, city: 'Sao Paulo', minimun_rent: 1, maximum_rent: 5, property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     visit root_path
-    click_on 'Apartamento Top'
+    click_on property.title
     click_on 'Enviar Proposta'
 
     fill_in 'Data Inicial', with: '2017-09-11'
@@ -195,28 +174,20 @@ feature 'visitor_send_proposal' do
   end
 
   scenario 'and expect price up to date' do
+    owner = create(:user)
+    login_as(owner)
+
     property_type = PropertyType.create(name: 'sitio')
+    purpose = Purpose.create(name:'ferias')
 
-    user = User.create(email: 'eliza@rails.com', password: 'test123')
+    property = create(:property, city: 'Sao Paulo', minimun_rent: 1, maximum_rent: 5, property_type: property_type, owner_id: owner.id)
 
-    property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                              description: 'Apartamento grande na região do Paraisópolis',
-                              daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                              rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+    PropertyPurpose.create(property: property, purpose: purpose)
 
     daily_price_range = PriceRange.create(start_date: Date.today, end_date: Date.today + 30, daily_rate: 100, property_id: property.id)
 
-
-     visit root_path
-
-     click_on 'Login'
-     fill_in 'Email', with: user.email
-     fill_in 'Senha', with: user.password
-     click_on 'Entrar'
-
-
     visit root_path
-    click_on 'Apartamento Top'
+    click_on property.title
     click_on 'Enviar Proposta'
 
     fill_in 'Data Inicial', with: '05/09/2017'

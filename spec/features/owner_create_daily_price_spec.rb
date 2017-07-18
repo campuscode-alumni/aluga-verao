@@ -2,18 +2,15 @@ require 'rails_helper'
 
   feature 'Owner create price_range by period' do
     scenario 'successfully' do
-
-      purpose = Purpose.create(name:'ferias')
+      owner = create(:user)
+      login_as(owner)
 
       property_type = PropertyType.create(name: 'sitio')
+      purpose = Purpose.create(name:'ferias')
 
+      property = create(:property, title: 'Apartamento Top', property_type: property_type, owner_id: owner.id)
 
-      property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                                description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
-
-      PropertyPurpose.create(property: property , purpose: purpose )
+      PropertyPurpose.create(property: property, purpose: purpose)
 
       visit root_path
 
@@ -33,18 +30,16 @@ require 'rails_helper'
     end
 
     scenario 'and missing some attribute' do
-
-      purpose = Purpose.create(name:'ferias')
-
+      owner = create(:user)
+      login_as(owner)
 
       property_type = PropertyType.create(name: 'sitio')
+      purpose = Purpose.create(name:'ferias')
 
-      property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                                description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+      property = create(:property, title: 'Apartamento Top', property_type: property_type, owner_id: owner.id)
 
-      PropertyPurpose.create(property: property , purpose: purpose )
+      PropertyPurpose.create(property: property, purpose: purpose)
+
 
       visit root_path
       click_on 'Apartamento Top'
@@ -60,46 +55,39 @@ require 'rails_helper'
     end
 
     scenario 'and start_date < today' do
-
-      purpose = Purpose.create(name:'ferias')
-
+      owner = create(:user)
+      login_as(owner)
 
       property_type = PropertyType.create(name: 'sitio')
+      purpose = Purpose.create(name:'ferias')
 
-      property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                                description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+      property = create(:property, title: 'Apartamento Top', property_type: property_type, owner_id: owner.id)
 
-   PropertyPurpose.create(property: property , purpose: purpose )
+      PropertyPurpose.create(property: property, purpose: purpose)
 
-    visit root_path
-    click_on 'Apartamento Top'
-    click_on 'Cadastrar valor por periodo'
+      visit root_path
+      click_on 'Apartamento Top'
+      click_on 'Cadastrar valor por periodo'
 
-    fill_in 'Data Inicial', with: Date.today - 1
-    fill_in 'Data Final', with: Date.today + 20
-    fill_in 'Valor da diaria', with: '150,00'
+      fill_in 'Data Inicial', with: Date.today - 1
+      fill_in 'Data Final', with: Date.today + 20
+      fill_in 'Valor da diaria', with: '150,00'
 
-    click_on 'Enviar'
+      click_on 'Enviar'
 
-    expect(page).to have_css('label', text: 'Data inicial deve ser maior ou igual a data de hoje')
+      expect(page).to have_css('label', text: 'Data inicial deve ser maior ou igual a data de hoje')
     end
 
     scenario 'and start_date < today' do
-
-      purpose = Purpose.create(name:'ferias')
-
-
+      owner = create(:user)
+      login_as(owner)
 
       property_type = PropertyType.create(name: 'sitio')
+      purpose = Purpose.create(name:'ferias')
 
-      property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                                description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+      property = create(:property, title: 'Apartamento Top', property_type: property_type, owner_id: owner.id)
 
-    PropertyPurpose.create(property: property , purpose: purpose )
+      PropertyPurpose.create(property: property, purpose: purpose)
 
       visit root_path
       click_on 'Apartamento Top'
@@ -115,18 +103,15 @@ require 'rails_helper'
     end
 
     scenario 'and period strikes another period' do
-
-      purpose = Purpose.create(name:'ferias')
-
+      owner = create(:user)
+      login_as(owner)
 
       property_type = PropertyType.create(name: 'sitio')
+      purpose = Purpose.create(name:'ferias')
 
-      property = Property.create(title: 'Apartamento Top', city: 'Sao Paulo', state: 'SP', property_type_id: property_type.id,
-                                description: 'Apartamento grande na região do Paraisópolis',
-                                daily_rate: 50, maximum_guests: 20, minimun_rent: 1, maximum_rent: 5,
-                                rules: 'Não pode faltar o pancadão e tem que fumar o colchão', owner: 'vo Carlos')
+      property = create(:property, title: 'Apartamento Top', property_type: property_type, owner_id: owner.id)
 
-      PropertyPurpose.create(property: property , purpose: purpose )
+      PropertyPurpose.create(property: property, purpose: purpose)
 
       visit root_path
       click_on 'Apartamento Top'

@@ -3,10 +3,10 @@
 
   <% if user_signed_in? %>
     <%= link_to 'Cadastrar tipo de imovel', new_property_type_path, class: 'btn btn-primary' %>
+    <%= link_to 'Cadastrar Imovel', new_property_path, class: "btn btn-primary" %>
+    <%= link_to 'Meus imoveis', properties_path, class: "btn btn-primary"%>
+    <%= link_to 'Ver propostas', proposals_path, class: "btn btn-primary" %>
   <% end %>
-  <%= link_to 'Cadastrar Imovel', new_property_path, class: "btn btn-primary" %>
-  <%= link_to 'Meus imoveis', properties_path, class: "btn btn-primary"%>
-  <%= link_to 'Ver propostas', proposals_path, class: "btn btn-primary" %>
 
   <br/>
 

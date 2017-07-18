@@ -1,5 +1,5 @@
 class Property < ApplicationRecord
-  validates :owner, presence: true
+  belongs_to :owner, class_name: 'User'
   has_many :proposals
   has_many :price_ranges
   has_many :property_purposes

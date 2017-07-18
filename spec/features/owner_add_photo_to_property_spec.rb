@@ -4,8 +4,8 @@ feature 'Owner add photo to property' do
   scenario 'successfully' do
     property_type = PropertyType.create(name: 'sitio')
 
-    user = User.create(email: 'eliza@rails.com', password: 'test123')
-
+    user = User.create(email: 'eliza@rails.com', password: 'test123', name: 'vo Carlos')
+    login_as(user)
     purpose = Purpose.create(name:'ferias')
 
     #simula o cadastro
@@ -22,7 +22,6 @@ feature 'Owner add photo to property' do
     fill_in 'Minimo de dias para hospedagem', with: '2'
     fill_in 'Regras', with: 'varias regras mimimi'
     check purpose.name
-    fill_in 'Dono', with: 'vo Carlos'
     fill_in 'Descricao', with: 'sitio do meu vo muito bac'
     attach_file('Foto do imóvel', "#{Rails.root}/spec/support/images/sitio.jpg")
 
@@ -39,7 +38,7 @@ feature 'Owner add photo to property' do
     expect(page).to have_css('li', text: '2')
     expect(page).to have_css('li', text: 'varias regras mimimi')
     expect(page).to have_css('li', text: 'ferias')
-    expect(page).to have_css('li', text: 'vo Carlos')
+    expect(page).to have_css('li', text: user.name)
     expect(page).to have_css('p', text: 'sitio do meu vo muito bac')
     expect(page).to have_css("img[src*='sitio.jpg']")
   end
@@ -47,7 +46,8 @@ feature 'Owner add photo to property' do
   scenario 'and dont have photo' do
     property_type = PropertyType.create(name: 'sitio')
 
-    user = User.create(email: 'eliza@rails.com', password: 'test123')
+    user = User.create(email: 'eliza@rails.com', password: 'test123', name: 'vo Carlos')
+    login_as(user)
 
     purpose = Purpose.create(name:'ferias')
 
@@ -65,7 +65,6 @@ feature 'Owner add photo to property' do
     fill_in 'Minimo de dias para hospedagem', with: '2'
     fill_in 'Regras', with: 'varias regras mimimi'
     check purpose.name
-    fill_in 'Dono', with: 'vo Carlos'
     fill_in 'Descricao', with: 'sitio do meu vo muito bac'
 
     click_on 'Enviar'
@@ -81,7 +80,7 @@ feature 'Owner add photo to property' do
     expect(page).to have_css('li', text: '2')
     expect(page).to have_css('li', text: 'varias regras mimimi')
     expect(page).to have_css('li', text: 'ferias')
-    expect(page).to have_css('li', text: 'vo Carlos')
+    expect(page).to have_css('li', text: user.name)
     expect(page).to have_css('p', text: 'sitio do meu vo muito bac')
     expect(page).to have_css("img[src*='missing.jpg']")
   end
