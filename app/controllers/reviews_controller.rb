@@ -1,7 +1,12 @@
 class ReviewsController < ApplicationController
   def new
-      @property = Property.find(params[:property_id])
+    @property = Property.find params[:property_id]
+    if @property.has_review_from? current_user
+      flash[:alert] = 'Você já avaliou esse imóvel.'
+      redirect_to my_rents_path
+    else
       @property_review = @property.property_reviews.new
+    end
   end
 
   def create

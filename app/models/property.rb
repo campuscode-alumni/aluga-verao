@@ -13,4 +13,8 @@ class Property < ApplicationRecord
     proposals.find_by_sql([' select * from proposals where accepted = :accept and (start_date >= :start_param) and (:end_param >= start_date) or (end_date >= :start_param) and (start_date < :end_param) ', { accept: true, start_param: start_date, end_param: end_date}]).empty?
   end
 
+  def has_review_from?(user)
+    property_reviews.where(user: user).any?
+  end
+
 end

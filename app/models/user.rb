@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :proposals
   has_many :rents, through: :proposals
   has_many :properties
+  has_many :property_reviews, through: :proposals
 end

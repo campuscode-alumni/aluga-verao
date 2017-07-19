@@ -27,6 +27,7 @@ feature 'Owner edit daily price range' do
     expect(page).to have_css('li', text: I18n.l(daily_price_range.end_date))
     expect(page).to have_css('li', text: 'R$ 150,00')
   end
+  
   scenario 'and is missing price' do
     owner = create(:user)
     login_as(owner)
