@@ -1,5 +1,6 @@
 ---
 pt-BR:
+  characters_minimum: caracteres minimos
   activerecord:
     #models:
       #property: Property
