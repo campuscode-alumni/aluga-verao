@@ -1,19 +1,16 @@
 <h1><%= @property.title %></h1>
 <h3>Fotos do imóvel</h3>
-<br>
+
 <% if @property.photo.exists? %>
-  <%= image_tag @property.photo.url %>
+  <%= image_tag @property.photo.url(:medium) %>
 <% else %>
-  <%= image_tag "#{Rails.root}/app/assets/images/missing.jpg" %>
+  <%= image_tag "missing.jpg", size: '200x200' %>
 <%end %>
+<br>
+<br>
 <ul>
-
   <li>Tipo da Propriedade: <%= @property.property_type.name %></li>
-  <li>Finalidade da locação: <% @property.purposes.each do |purpose|%>
-    <%= purpose.name %>
-    <% end %>
-  </li>
-
+  <li>Finalidade da locação: <%= @property.purpose_list %></li>
   <li>Cidade: <%= @property.city %></li>
   <li>Estado: <%= @property.state %></li>
   <li>Regras para hospedagem: <%= @property.rules %></li>

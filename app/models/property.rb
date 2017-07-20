@@ -6,7 +6,7 @@ class Property < ApplicationRecord
   has_many :purposes , through: :property_purposes
   belongs_to :property_type
   has_many :property_reviews
-  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :photo, styles: { medium: "400x400>", thumb: "100x100>" }
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 
   def is_available?( start_date, end_date )
@@ -17,4 +17,11 @@ class Property < ApplicationRecord
     property_reviews.where(user: user).any?
   end
 
+  def purpose_list
+    purposes = []
+    self.purposes.each do |purpose|
+      purposes << purpose.name
+    end
+    purposes.join(', ')
+  end
 end
